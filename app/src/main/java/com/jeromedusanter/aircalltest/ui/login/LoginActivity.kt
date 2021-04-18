@@ -17,8 +17,7 @@ import javax.inject.Inject
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginState, LoginViewModel>() {
 
-    override val resId: Int
-        get() = R.layout.activity_login
+    override val resId: Int = R.layout.activity_login
 
     override val viewModel: LoginViewModel by viewModels { factory }
 

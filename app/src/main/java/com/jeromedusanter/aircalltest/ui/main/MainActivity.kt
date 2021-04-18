@@ -7,8 +7,7 @@ import com.jeromedusanter.aircalltest.ui.base.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainState, MainViewModel>() {
 
-    override val resId: Int
-        get() = R.layout.activity_main
+    override val resId: Int = R.layout.activity_main
 
     override val viewModel: MainViewModel by viewModels { factory }
 }

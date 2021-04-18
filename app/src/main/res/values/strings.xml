@@ -4,4 +4,6 @@
     <string name="login_hintUser">Identifiant</string>
     <string name="login_hintPassword">Mot de passe</string>
     <string name="login_buttonTitleSignIn">Se connecter</string>
+    <string name="repositoryList_title">Top Dépots Github</string>
+    <string name="repositoryDetails_title">Top Dépots Github</string>
 </resources>
