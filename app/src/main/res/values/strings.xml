@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Aircall Test</string>
+    <string name="login_title">Login</string>
+    <string name="login_hintUser">Identifiant</string>
+    <string name="login_hintPassword">Mot de passe</string>
+    <string name="login_buttonTitleSignIn">Se connecter</string>
+</resources>
