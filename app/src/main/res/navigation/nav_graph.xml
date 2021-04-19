@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_repository">
+    app:startDestination="@id/navigation_repoGithub">
 
     <navigation
-        android:id="@+id/navigation_repository"
-        app:startDestination="@id/fragment_repository_list">
+        android:id="@+id/navigation_repoGithub"
+        app:startDestination="@id/fragment_repoGitHubList">
         <fragment
-            android:id="@+id/fragment_repository_list"
-            android:name="com.jeromedusanter.aircalltest.ui.main.features.repository.list.RepositoryListFragment"
-            android:label="@string/repositoryList_title"
-            tools:layout="@layout/fragment_repository_list">
+            android:id="@+id/fragment_repoGitHubList"
+            android:name="com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListFragment"
+            android:label="@string/repoGithubList_title"
+            tools:layout="@layout/fragment_repo_github_list">
 
             <action
                 android:id="@+id/action_navigateToRepositoryDetails"
-                app:destination="@id/fragment_repository_details" />
+                app:destination="@id/fragment_repoGithubDetails" />
 
         </fragment>
         <fragment
-            android:id="@+id/fragment_repository_details"
-            android:name="com.jeromedusanter.aircalltest.ui.main.features.repository.details.RepositoryDetailsFragment"
-            android:label="@string/repositoryDetails_title"
-            tools:layout="@layout/fragment_repository_details" />
+            android:id="@+id/fragment_repoGithubDetails"
+            android:name="com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsFragment"
+            android:label="@string/repoGithubDetails_title"
+            tools:layout="@layout/fragment_repo_github_details" />
     </navigation>
 
 </navigation>

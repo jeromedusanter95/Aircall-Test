@@ -1,7 +1,7 @@
 package com.jeromedusanter.aircalltest.di
 
-import com.jeromedusanter.aircalltest.ui.main.features.repository.details.RepositoryDetailsFragment
-import com.jeromedusanter.aircalltest.ui.main.features.repository.list.RepositoryListFragment
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsFragment
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,8 +9,8 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentModule {
 
     @ContributesAndroidInjector
-    abstract fun contributeRepositoryListFragment(): RepositoryListFragment
+    abstract fun contributeRepositoryListFragment(): RepoGithubListFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeRepositoryDetailsFragment(): RepositoryDetailsFragment
+    abstract fun contributeRepositoryDetailsFragment(): RepoGithubDetailsFragment
 }

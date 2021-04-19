@@ -12,7 +12,11 @@ import javax.inject.Singleton
         ActivityModule::class,
         FragmentModule::class,
         ViewModelModule::class,
-        AndroidSupportInjectionModule::class]
+        AndroidSupportInjectionModule::class,
+        RetrofitModule::class,
+        RepositoryModule::class,
+        DataSourceModule::class
+    ]
 )
 interface ApplicationComponent {
     fun inject(application: Application)

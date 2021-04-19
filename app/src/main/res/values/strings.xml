@@ -4,6 +4,8 @@
     <string name="login_hintUser">Identifiant</string>
     <string name="login_hintPassword">Mot de passe</string>
     <string name="login_buttonTitleSignIn">Se connecter</string>
-    <string name="repositoryList_title">Top Dépots Github</string>
-    <string name="repositoryDetails_title">Top Dépots Github</string>
+    <string name="repoGithubList_title">Dépôts Github</string>
+    <string name="repoGithubDetails_title">Détails du dépôt</string>
+    <string name="repoGithubListError_title">Une erreur est survenue…</string>
+    <string name="repoGithubListEmpty_title">Aucun dépôt trouvé</string>
 </resources>

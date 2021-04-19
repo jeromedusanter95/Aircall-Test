@@ -1,3 +1,3 @@
 package com.jeromedusanter.aircalltest.ui.base
 
-interface BaseUiModel
+interface UiModel

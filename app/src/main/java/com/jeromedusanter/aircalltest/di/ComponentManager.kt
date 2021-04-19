@@ -1,21 +1,27 @@
 package com.jeromedusanter.aircalltest.di
 
 import com.jeromedusanter.aircalltest.Application
+import retrofit2.Retrofit
 
 object ComponentManager {
 
     internal lateinit var applicationComponent: ApplicationComponent
 
-    fun init(application: Application) {
+    fun init(application: Application, retrofit: Retrofit) {
         val applicationModule = ApplicationModule(application)
-        initApplicationComponent(applicationModule)
+        val retrofitModule = RetrofitModule(retrofit)
+        initApplicationComponent(applicationModule, retrofitModule)
     }
 
 
-    private fun initApplicationComponent(applicationModule: ApplicationModule) {
+    private fun initApplicationComponent(
+        applicationModule: ApplicationModule,
+        retrofitModule: RetrofitModule
+    ) {
         applicationComponent = DaggerApplicationComponent
             .builder()
             .applicationModule(applicationModule)
+            .retrofitModule(retrofitModule)
             .build()
     }
 }

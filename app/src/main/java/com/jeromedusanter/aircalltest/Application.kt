@@ -3,6 +3,7 @@ package com.jeromedusanter.aircalltest
 import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.Fragment
+import com.jeromedusanter.aircalltest.data.remote.RequestManager
 import com.jeromedusanter.aircalltest.di.ComponentManager
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -28,7 +29,7 @@ class Application : Application(), HasActivityInjector, HasSupportFragmentInject
 
     override fun onCreate() {
         super.onCreate()
-        ComponentManager.init(this)
+        ComponentManager.init(this, RequestManager.getRetrofit())
         ComponentManager.applicationComponent.inject(this)
     }
 }

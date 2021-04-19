@@ -22,7 +22,7 @@ abstract class BaseFragment<B : ViewDataBinding, BS : BaseState, VM : BaseViewMo
 
     abstract val viewModel: VM
 
-    private lateinit var binding: B
+    lateinit var binding: B
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
