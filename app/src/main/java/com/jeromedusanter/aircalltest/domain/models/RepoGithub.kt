@@ -9,5 +9,8 @@ data class RepoGithub(
     val url: String,
     val description: String,
     val private: Boolean,
-    val createdAt: LocalDate
+    val createdAt: LocalDate,
+    val watchersCount: Int,
+    val stargazersCount: Int,
+    val forksCount: Int
 ) : Model

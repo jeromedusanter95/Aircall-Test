@@ -8,4 +8,7 @@
     <string name="repoGithubDetails_title">Détails du dépôt</string>
     <string name="repoGithubListError_title">Une erreur est survenue…</string>
     <string name="repoGithubListEmpty_title">Aucun dépôt trouvé</string>
+    <string name="repoGithubDetails_watchersTitle">Observateurs</string>
+    <string name="repoGithubDetails_stargazersTitle">Etoiles reçues</string>
+    <string name="repoGithubDetails_forksTitle">Forks réalisés</string>
 </resources>

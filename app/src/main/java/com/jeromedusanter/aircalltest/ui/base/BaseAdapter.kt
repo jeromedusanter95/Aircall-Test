@@ -8,7 +8,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.jeromedusanter.aircalltest.BR
-import com.jeromedusanter.aircalltest.utils.cast
+import com.jeromedusanter.aircalltest.ui.utils.cast
 import java.util.*
 import kotlin.reflect.KFunction
 import kotlin.reflect.full.memberFunctions

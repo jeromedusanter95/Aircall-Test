@@ -2,7 +2,7 @@ package com.jeromedusanter.aircalltest.ui.main.features.repogithub.list
 
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import com.jeromedusanter.aircalltest.ui.base.Mapper
-import com.jeromedusanter.aircalltest.utils.toFormattedStringWithPattern
+import com.jeromedusanter.aircalltest.ui.utils.toFormattedStringWithPattern
 import java.lang.Exception
 import javax.inject.Inject
 

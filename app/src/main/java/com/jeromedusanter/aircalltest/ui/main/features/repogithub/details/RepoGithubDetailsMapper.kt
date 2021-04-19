@@ -8,7 +8,13 @@ import javax.inject.Inject
 class RepoGithubDetailsMapper @Inject constructor() : Mapper<RepoGithub, RepoGithubDetailsUiModel> {
 
     override fun toUiModel(model: RepoGithub): RepoGithubDetailsUiModel {
-        return RepoGithubDetailsUiModel(model.name, model.description)
+        return RepoGithubDetailsUiModel(
+            model.name,
+            model.description,
+            model.watchersCount.toString(),
+            model.stargazersCount.toString(),
+            model.forksCount.toString()
+        )
     }
 
     override fun toModel(uiModel: RepoGithubDetailsUiModel): RepoGithub =

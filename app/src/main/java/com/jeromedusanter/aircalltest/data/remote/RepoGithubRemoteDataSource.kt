@@ -1,6 +1,5 @@
 package com.jeromedusanter.aircalltest.data.remote
 
-import android.util.Log
 import com.jeromedusanter.aircalltest.data.features.repogithub.RepoGithubDataSource
 import com.jeromedusanter.aircalltest.data.features.repogithub.RepoGithubMapper
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub

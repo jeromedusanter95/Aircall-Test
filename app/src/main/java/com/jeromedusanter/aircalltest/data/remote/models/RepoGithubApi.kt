@@ -9,5 +9,8 @@ data class RepoGithubApi(
     @SerializedName("html_url") val url: String,
     @SerializedName("description") val description: String,
     @SerializedName("private") val private: Boolean,
-    @SerializedName("created_at") val createdAt: String
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("watchers_count") val watchersCount: Int,
+    @SerializedName("stargazers_count") val stargazersCount: Int,
+    @SerializedName("forks_count") val forksCount: Int
 ) : ApiModel

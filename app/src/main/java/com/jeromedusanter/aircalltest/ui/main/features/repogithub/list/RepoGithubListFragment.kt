@@ -22,7 +22,6 @@ class RepoGithubListFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerRepoGithub.adapter = adapter
-        viewModel.getRepoGithubList()
     }
 
     override fun render(state: RepoGithubState) {

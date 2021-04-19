@@ -8,6 +8,7 @@ import com.jeromedusanter.aircalltest.ui.base.BaseViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListMapper
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
@@ -23,28 +24,39 @@ class RepoGithubViewModel @Inject constructor(
         get() = MutableLiveData(_selectedRepoGithub.value?.let {
             repoGithubDetailsMapper.toUiModel(it)
         })
-
     private val _selectedRepoGithub = MutableLiveData<RepoGithub>()
 
-    lateinit var repoGithubList: List<RepoGithub>
+    val repoGithubUiModelList: LiveData<List<RepoGithubListUiModel>>
+        get() = MutableLiveData(_repoGithubList.value?.let {
+            it.map { repoGithubListMapper.toUiModel(it) }
+        })
+    private val _repoGithubList = MutableLiveData<List<RepoGithub>>()
+
+    init {
+        getRepoGithubList()
+    }
 
     fun selectRepoGithub(id: Long) {
-        _selectedRepoGithub.value = repoGithubList.find { it.id == id }!!
+        _selectedRepoGithub.value = _repoGithubList.value?.find { it.id == id }!!
         dispatch(RepoGithubState.NavToRepoGithubDetails)
     }
 
-    fun getRepoGithubList() {
+    private fun getRepoGithubList() {
         getRepoGithubUseCase.execute(true)
             .doOnSubscribe { dispatch(RepoGithubState.LoadingRepoGithubList) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                repoGithubList = it
-                dispatch(RepoGithubState.SuccessRepoGithubList(it.map {
-                    repoGithubListMapper.toUiModel(
-                        it
-                    )
-                }))
+            .subscribe({ list ->
+                _repoGithubList.value = list
+                dispatch(
+                    if (list.isEmpty()) {
+                        RepoGithubState.EmptyRepoGithubList
+                    } else {
+                        RepoGithubState.SuccessRepoGithubList(
+                            list.map { repoGithubListMapper.toUiModel(it) }
+                        )
+                    }
+                )
             }, {
                 it.printStackTrace()
                 dispatch(RepoGithubState.ErrorRepoGithubList)
