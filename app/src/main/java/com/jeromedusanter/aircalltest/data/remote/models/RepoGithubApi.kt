@@ -1,7 +1,7 @@
 package com.jeromedusanter.aircalltest.data.remote.models
 
 import com.google.gson.annotations.SerializedName
-import com.jeromedusanter.aircalltest.data.base.ApiModel
+import com.jeromedusanter.aircalltest.data.base.IDataApiModel
 
 data class RepoGithubApi(
     @SerializedName("id") val id: Long,
@@ -13,4 +13,4 @@ data class RepoGithubApi(
     @SerializedName("watchers_count") val watchersCount: Int,
     @SerializedName("stargazers_count") val stargazersCount: Int,
     @SerializedName("forks_count") val forksCount: Int
-) : ApiModel
+) : IDataApiModel

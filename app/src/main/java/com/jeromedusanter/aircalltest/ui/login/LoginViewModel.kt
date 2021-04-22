@@ -1,12 +1,12 @@
 package com.jeromedusanter.aircalltest.ui.login
 
-import androidx.databinding.ObservableField
+import com.jeromedusanter.aircalltest.data.remote.ApiService
 import com.jeromedusanter.aircalltest.ui.base.BaseViewModel
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor() : BaseViewModel<LoginState>() {
-    val userId = ObservableField("")
-    val password = ObservableField("")
+class LoginViewModel @Inject constructor(
+    private val apiService: ApiService
+) : BaseViewModel<LoginState>() {
 
     fun clickSignIn() {
         dispatch(LoginState.NavToMainActivity)

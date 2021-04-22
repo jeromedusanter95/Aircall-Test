@@ -16,6 +16,6 @@ class RepoGithubRemoteDataSource @Inject constructor(
         val QUERY_ORDER = "desc"
         val QUERY_API = "android"
         return apiService.fetchRepositories(QUERY_SORT, QUERY_ORDER, 1, 10, QUERY_API)
-            .map { it.repoGithubApiList.map { mapper.toModel(it) } }
+            .map { it.repoGithubApiList.map { mapper.mapDataApiModelToModel(it) } }
     }
 }

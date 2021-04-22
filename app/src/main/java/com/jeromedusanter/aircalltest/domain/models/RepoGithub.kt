@@ -1,6 +1,6 @@
 package com.jeromedusanter.aircalltest.domain.models
 
-import com.jeromedusanter.aircalltest.domain.base.Model
+import com.jeromedusanter.aircalltest.domain.base.IModel
 import org.threeten.bp.LocalDate
 
 data class RepoGithub(
@@ -13,4 +13,4 @@ data class RepoGithub(
     val watchersCount: Int,
     val stargazersCount: Int,
     val forksCount: Int
-) : Model
+) : IModel

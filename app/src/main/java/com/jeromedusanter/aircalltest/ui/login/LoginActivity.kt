@@ -1,19 +1,14 @@
 package com.jeromedusanter.aircalltest.ui.login
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import com.jeromedusanter.aircalltest.BR
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.ActivityLoginBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseActivity
 import com.jeromedusanter.aircalltest.ui.main.MainActivity
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginState, LoginViewModel>() {
 
@@ -21,10 +16,31 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginState, LoginViewMo
 
     override val viewModel: LoginViewModel by viewModels { factory }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        intent.data?.let { uri ->
+            if (uri.toString().startsWith(REDIRECT_URI)) {
+                viewModel.dispatch(LoginState.NavToMainActivity)
+            }
+        } ?: kotlin.run {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        }
+    }
+
     override fun render(state: LoginState) {
         super.render(state)
         when (state) {
             is LoginState.NavToMainActivity -> startActivity(Intent(this, MainActivity::class.java))
         }
     }
+
+    companion object {
+        private const val GITHUB_ID: String = "1998c436528b18a04d4e"
+        const val GITHUB_SECRET: String = "f936cabcf1367514a323bafd4e8b28d62440bc96"
+        private const val REDIRECT_URI = "jeromedusanter://callback"
+        const val url = "https://github.com/login/oauth/authorize" +
+                "?client_id=" + GITHUB_ID +
+                "&scope=repo&redirect_uri=" + REDIRECT_URI
+    }
+
 }
