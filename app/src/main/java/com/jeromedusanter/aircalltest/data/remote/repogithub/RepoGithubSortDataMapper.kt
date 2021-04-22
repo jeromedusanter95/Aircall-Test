@@ -5,7 +5,7 @@ import com.jeromedusanter.aircalltest.data.remote.repogithub.models.SortRepoGith
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubSort
 import javax.inject.Inject
 
-class SortRepoGithubMapper @Inject constructor(): IMapper<RepoGithubSort, SortRepoGithubApi, Nothing> {
+class RepoGithubSortDataMapper @Inject constructor(): IMapper<RepoGithubSort, SortRepoGithubApi, Nothing> {
 
     override fun mapModelToDataApiModel(model: RepoGithubSort): SortRepoGithubApi {
         return when (model) {

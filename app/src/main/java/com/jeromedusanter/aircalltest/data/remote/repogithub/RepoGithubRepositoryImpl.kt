@@ -10,15 +10,14 @@ import javax.inject.Inject
 class RepoGithubRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val repoGithubMapper: RepoGithubDataMapper,
-    private val sortMapper: SortRepoGithubMapper
+    private val sortMapper: RepoGithubSortDataMapper
 ) : RepoGithubRepository {
 
-    override fun getRepoGithubList(filter: RepoGithubFilter?): Single<List<RepoGithub>> {
+    override fun getRepoGithubList(filter: RepoGithubFilter): Single<List<RepoGithub>> {
         return apiService.fetchRepositories(
-            sort = filter?.sort?.let { sortMapper.mapModelToDataApiModel(it).serverValue },
-            order = filter?.order,
-            perPage = filter?.perPage,
-            query = filter?.query ?: "ANDROID"
+            sort = filter.sort?.let { sortMapper.mapModelToDataApiModel(it).serverValue },
+            perPage = filter.perPage,
+            query = filter.query
         )
             .map { it.items.map { repoGithubMapper.mapDataApiModelToModel(it) } }
     }

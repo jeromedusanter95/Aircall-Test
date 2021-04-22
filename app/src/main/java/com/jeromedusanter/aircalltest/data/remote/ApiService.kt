@@ -10,9 +10,9 @@ interface ApiService {
     @GET("search/repositories")
     fun fetchRepositories(
         @Query("sort") sort: String?,
-        @Query("order") order: String?,
+        @Query("order") order: String? = "desc",
         @Query("page") page: Long? = 1,
-        @Query("per_page") perPage: Long?,
+        @Query("per_page") perPage: Long,
         @Query("q") query: String
     ): Single<RepoGithubApiResponse>
 }

@@ -1,7 +1,6 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter
 
 import android.content.res.ColorStateList
-import android.widget.RadioButton
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navGraphViewModels
 import com.google.android.material.radiobutton.MaterialRadioButton
@@ -31,16 +30,24 @@ class RepoGithubFilterDialogFragment(val factory: ViewModelProvider.Factory) :
         }
         with(binding) {
             buttonValidate.setOnClickListener {
-                requireContext().hideKeyboard(requireView())
-                dismiss()
-                this@RepoGithubFilterDialogFragment.viewModel.changeFilter(
-                    RepoGithubFilterUiModel(
-                        sort = RepoGithubSortUiModel.fromOrdinal(radioGroupSort.checkedRadioButtonId),
-                        order = null,
-                        perPage = editPerPage.text?.toString()?.toLongOrNull(),
-                        query = editQuery.text?.toString()
+                val query = editQuery.text.toString()
+                val perPage = editPerPage.text.toString()
+                textInputQuery.error =
+                    if (query.isEmpty()) getString(R.string.repo_github_filter_per_page_error) else null
+                textInputPerPage.error =
+                    if (perPage.isEmpty() || perPage.toLong() <= 0) getString(R.string.repo_github_filter_query_error) else null
+                if (query.isNotEmpty() && perPage.isNotEmpty() && perPage.toLong() > 0) {
+                    requireContext().hideKeyboard(requireView())
+                    dismiss()
+                    this@RepoGithubFilterDialogFragment.viewModel.changeFilter(
+                        RepoGithubFilterUiModel(
+                            sort = RepoGithubSortUiModel.fromOrdinal(radioGroupSort.checkedRadioButtonId)
+                                ?: RepoGithubSortUiModel.STARS,
+                            perPage = perPage.toLong(),
+                            query = query
+                        )
                     )
-                )
+                }
             }
         }
     }

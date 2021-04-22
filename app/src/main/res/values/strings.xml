@@ -17,6 +17,8 @@
     <string name="repo_github_filter_title">Filtres</string>
     <string name="repo_github_filter_query_hint">Mot clés</string>
     <string name="repo_github_filter_per_page_hint">Nombre de résultats</string>
+    <string name="repo_github_filter_query_error">Ce champs ne peut pas être vide</string>
+    <string name="repo_github_filter_per_page_error">Ce champs ne peut pas être vide ou égal à 0</string>
     <string name="repo_github_filter_button_text">Valider</string>
     <string name="repo_github_sort_stars">Nombre d\'étoiles</string>
     <string name="repo_github_sort_forks">Nombre de forks</string>

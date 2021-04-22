@@ -9,9 +9,10 @@ import javax.inject.Inject
 
 class GetRepoGithubUseCase @Inject constructor(
     private val repository: RepoGithubRepository
-) : IUseCase<RepoGithubFilter?, Single<List<RepoGithub>>> {
+) : IUseCase<RepoGithubFilter, Single<List<RepoGithub>>> {
 
     override fun execute(param: RepoGithubFilter?): Single<List<RepoGithub>> {
-        return repository.getRepoGithubList(param)
+        return param?.let { repository.getRepoGithubList(it) }
+            ?: Single.error(Throwable("Param should never be null here"))
     }
 }

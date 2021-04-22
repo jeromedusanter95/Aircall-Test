@@ -3,6 +3,7 @@ package com.jeromedusanter.aircalltest.ui.main.features.repogithub
 import androidx.databinding.ObservableField
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
+import com.jeromedusanter.aircalltest.domain.models.RepoGithubSort
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetRepoGithubUseCase
 import com.jeromedusanter.aircalltest.ui.base.BaseViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsMapper
@@ -11,6 +12,7 @@ import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithu
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterUiModel
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubSortUiModel
 import com.jeromedusanter.aircalltest.ui.utils.addOnPropertyChanged
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -32,7 +34,7 @@ class RepoGithubViewModel @Inject constructor(
     private val _repoGithubList = ObservableField<List<RepoGithub>>()
 
     val filterUiModel = ObservableField<RepoGithubFilterUiModel>()
-    private val _selectedFilter = ObservableField<RepoGithubFilter>()
+    private val _selectedFilter = ObservableField(RepoGithubFilter.newDefaultInstance())
 
     init {
         getRepoGithubList()
@@ -53,7 +55,11 @@ class RepoGithubViewModel @Inject constructor(
 
         _selectedFilter.addOnPropertyChanged {
             it.get()?.let {
-                filterUiModel.set(filterMapper.mapModelToUiModel(it))
+                if (it == RepoGithubFilter.newDefaultInstance()) {
+                    filterUiModel.set(RepoGithubFilterUiModel(RepoGithubSortUiModel.STARS, 0, ""))
+                } else {
+                    filterUiModel.set(filterMapper.mapModelToUiModel(it))
+                }
             }
         }
     }
@@ -64,7 +70,7 @@ class RepoGithubViewModel @Inject constructor(
     }
 
     fun refreshPage() {
-        _selectedFilter.set(null)
+        _selectedFilter.set(RepoGithubFilter.newDefaultInstance())
         getRepoGithubList()
     }
 

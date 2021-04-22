@@ -11,8 +11,7 @@ class RepoGithubFilterMapper @Inject constructor(
 
     override fun mapModelToUiModel(model: RepoGithubFilter): RepoGithubFilterUiModel {
         return RepoGithubFilterUiModel(
-            model.sort?.let { sortMapper.mapModelToUiModel(it) },
-            model.order,
+            sortMapper.mapModelToUiModel(model.sort),
             model.perPage,
             model.query
         )
@@ -20,8 +19,7 @@ class RepoGithubFilterMapper @Inject constructor(
 
     override fun mapUiModelToModel(model: RepoGithubFilterUiModel): RepoGithubFilter {
         return RepoGithubFilter(
-            model.sort?.let { sortMapper.mapUiModelToModel(it) },
-            model.order,
+            sortMapper.mapUiModelToModel(model.sort),
             model.perPage,
             model.query
         )
