@@ -51,6 +51,7 @@
             android:layout_marginBottom="@dimen/unit_2"
             android:text="@string/repo_github_list_error_button_text"
             android:textAllCaps="false"
+            app:backgroundTint="@color/purple_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

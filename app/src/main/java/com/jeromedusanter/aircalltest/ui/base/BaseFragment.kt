@@ -40,8 +40,11 @@ abstract class BaseFragment<B : ViewDataBinding, BS : IState, VM : BaseViewModel
         binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.setVariable(BR.viewModel, viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
+        initView()
         return binding.root
     }
+
+    open fun initView() = Unit
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

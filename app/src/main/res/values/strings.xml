@@ -14,4 +14,12 @@
     <string name="repo_github_details_watchers_title">Observateurs</string>
     <string name="repo_github_details_stargazers_title">Etoiles reçues</string>
     <string name="repo_github_details_forks_title">Forks réalisés</string>
+    <string name="repo_github_filter_title">Filtres</string>
+    <string name="repo_github_filter_query_hint">Mot clés</string>
+    <string name="repo_github_filter_per_page_hint">Nombre de résultats</string>
+    <string name="repo_github_filter_button_text">Valider</string>
+    <string name="repo_github_sort_stars">Nombre d\'étoiles</string>
+    <string name="repo_github_sort_forks">Nombre de forks</string>
+    <string name="repo_github_sort_help_wanted_issues">Nombres d\'issues</string>
+    <string name="repo_github_sort_updated">Modifié récemment</string>
 </resources>

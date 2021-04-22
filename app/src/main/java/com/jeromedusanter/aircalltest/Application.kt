@@ -2,12 +2,14 @@ package com.jeromedusanter.aircalltest
 
 import android.app.Activity
 import android.app.Application
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.jeromedusanter.aircalltest.data.remote.RequestManager
 import com.jeromedusanter.aircalltest.di.ComponentManager
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dagger.android.HasFragmentInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 

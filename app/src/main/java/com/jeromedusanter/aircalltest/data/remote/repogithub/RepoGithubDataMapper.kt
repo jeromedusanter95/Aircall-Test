@@ -1,12 +1,12 @@
-package com.jeromedusanter.aircalltest.data.features.repogithub
+package com.jeromedusanter.aircalltest.data.remote.repogithub
 
 import com.jeromedusanter.aircalltest.data.base.IMapper
-import com.jeromedusanter.aircalltest.data.remote.models.RepoGithubApi
+import com.jeromedusanter.aircalltest.data.remote.repogithub.models.RepoGithubApi
 import com.jeromedusanter.aircalltest.data.utils.toLocaleDate
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import javax.inject.Inject
 
-class RepoGithubMapper @Inject constructor() : IMapper<RepoGithub, RepoGithubApi, Nothing> {
+class RepoGithubDataMapper @Inject constructor() : IMapper<RepoGithub, RepoGithubApi, Nothing> {
 
     override fun mapModelToDataApiModel(model: RepoGithub): RepoGithubApi =
         throw Exception("No use case yet for this method, it should never been called")
@@ -19,7 +19,7 @@ class RepoGithubMapper @Inject constructor() : IMapper<RepoGithub, RepoGithubApi
             model.id,
             model.name,
             model.url,
-            model.description,
+            model.description.orEmpty(),
             model.private,
             model.createdAt.toLocaleDate(),
             model.watchersCount,

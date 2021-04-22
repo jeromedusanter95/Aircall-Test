@@ -14,8 +14,7 @@ import javax.inject.Singleton
         ViewModelModule::class,
         AndroidSupportInjectionModule::class,
         RetrofitModule::class,
-        RepositoryModule::class,
-        DataSourceModule::class
+        RepositoryModule::class
     ]
 )
 interface ApplicationComponent {

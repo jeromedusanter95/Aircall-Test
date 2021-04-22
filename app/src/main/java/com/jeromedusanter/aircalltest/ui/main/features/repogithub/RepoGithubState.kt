@@ -9,4 +9,5 @@ sealed class RepoGithubState : IState {
     object SuccessRepoGithubList : RepoGithubState()
     object LoadingRepoGithubList : RepoGithubState()
     object NavToRepoGithubDetails : RepoGithubState()
+    object ShowDialogFilter : RepoGithubState()
 }
