@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">Aircall Test</string>
     <string name="login_title">Login</string>
-    <string name="login_hintUser">Identifiant</string>
-    <string name="login_hintPassword">Mot de passe</string>
     <string name="login_buttonTitleSignIn">Se connecter</string>
     <string name="repoGithubList_title">Dépôts Github</string>
     <string name="repoGithubDetails_title">Détails du dépôt</string>
-    <string name="repoGithubListError_title">Une erreur est survenue…</string>
-    <string name="repoGithubListEmpty_title">Aucun dépôt trouvé</string>
-    <string name="repoGithubDetails_watchersTitle">Observateurs</string>
-    <string name="repoGithubDetails_stargazersTitle">Etoiles reçues</string>
-    <string name="repoGithubDetails_forksTitle">Forks réalisés</string>
+    <string name="repo_github_list_error_title">Une erreur est survenue…</string>
+    <string name="repo_github_list_error_subtitle">Assurez vous d\'avoir une connexion internet et veuillez réessayer.</string>
+    <string name="repo_github_list_error_button_text">Réessayer</string>
+    <string name="repo_github_list_empty_title">Aucun dépôt trouvé</string>
+    <string name="repo_github_list_empty_subtitle">Votre recherche n\'a trouvée aucun résultat. Veuillez réessayer.</string>
+    <string name="repo_github_list_loading_title">Chargement des dépôts</string>
+    <string name="repo_github_list_loading_subtitle">en cours…</string>
+    <string name="repo_github_details_watchers_title">Observateurs</string>
+    <string name="repo_github_details_stargazers_title">Etoiles reçues</string>
+    <string name="repo_github_details_forks_title">Forks réalisés</string>
 </resources>

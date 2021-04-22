@@ -16,7 +16,7 @@ class RepoGithubListStatefulLayout @JvmOverloads constructor(
         setStateView(
             State.LOADING,
             LayoutInflater.from(getContext()).inflate(
-                R.layout.sfl_default_placeholder_progress,
+                R.layout.sfl_repo_github_list_loading,
                 null
             )
         )

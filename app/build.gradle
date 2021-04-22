@@ -79,4 +79,7 @@ dependencies {
 
     // ----- StatefulLayout ----- //
     implementation 'cz.kinst.jakub:android-stateful-layout-simple:2.0.7'
+
+    // ----- Lottie ----- //
+    implementation 'com.airbnb.android:lottie:3.6.1'
 }

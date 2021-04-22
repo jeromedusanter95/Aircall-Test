@@ -14,6 +14,7 @@ import com.jeromedusanter.aircalltest.ui.utils.addOnPropertyChanged
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class RepoGithubViewModel @Inject constructor(
@@ -53,6 +54,7 @@ class RepoGithubViewModel @Inject constructor(
 
     private fun getRepoGithubList() {
         getRepoGithubUseCase.execute(null)
+            .delay(2, TimeUnit.SECONDS) //To see the beautiful lottie animation :)
             .doOnSubscribe { dispatch(RepoGithubState.LoadingRepoGithubList) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
