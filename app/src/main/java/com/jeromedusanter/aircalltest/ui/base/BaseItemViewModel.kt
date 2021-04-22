@@ -3,7 +3,7 @@ package com.jeromedusanter.aircalltest.ui.base
 import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableBoolean
 
-abstract class BaseItemViewModel<O : UiModel> : BaseObservable() {
+abstract class BaseItemViewModel<O : IUiModel> : BaseObservable() {
     protected lateinit var item: O
     val isSelected = ObservableBoolean(false)
     abstract val onItemClick: ((O, Int) -> Unit)?

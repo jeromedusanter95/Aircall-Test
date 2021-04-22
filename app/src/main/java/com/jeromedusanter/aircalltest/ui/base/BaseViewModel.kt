@@ -3,7 +3,7 @@ package com.jeromedusanter.aircalltest.ui.base
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class BaseViewModel<BS : BaseState> : ViewModel() {
+abstract class BaseViewModel<BS : IState> : ViewModel() {
 
     val disposable = CompositeDisposable()
 

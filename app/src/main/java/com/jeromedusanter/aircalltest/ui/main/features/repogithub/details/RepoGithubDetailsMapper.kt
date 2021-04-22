@@ -1,13 +1,12 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.details
 
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
-import com.jeromedusanter.aircalltest.ui.base.Mapper
-import java.lang.Exception
+import com.jeromedusanter.aircalltest.ui.base.IMapper
 import javax.inject.Inject
 
-class RepoGithubDetailsMapper @Inject constructor() : Mapper<RepoGithub, RepoGithubDetailsUiModel> {
+class RepoGithubDetailsMapper @Inject constructor() : IMapper<RepoGithub, RepoGithubDetailsUiModel> {
 
-    override fun toUiModel(model: RepoGithub): RepoGithubDetailsUiModel {
+    override fun mapModelToUiModel(model: RepoGithub): RepoGithubDetailsUiModel {
         return RepoGithubDetailsUiModel(
             model.name,
             model.description,
@@ -17,6 +16,6 @@ class RepoGithubDetailsMapper @Inject constructor() : Mapper<RepoGithub, RepoGit
         )
     }
 
-    override fun toModel(uiModel: RepoGithubDetailsUiModel): RepoGithub =
+    override fun mapUiModelToModel(model: RepoGithubDetailsUiModel): RepoGithub =
         throw Exception("No use case yet for this method, it should never been called")
 }

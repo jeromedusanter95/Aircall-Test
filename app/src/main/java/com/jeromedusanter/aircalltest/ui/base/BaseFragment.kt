@@ -15,7 +15,7 @@ import com.jeromedusanter.aircalltest.BR
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-abstract class BaseFragment<B : ViewDataBinding, BS : BaseState, VM : BaseViewModel<BS>> :
+abstract class BaseFragment<B : ViewDataBinding, BS : IState, VM : BaseViewModel<BS>> :
     Fragment() {
 
     abstract val resId: Int

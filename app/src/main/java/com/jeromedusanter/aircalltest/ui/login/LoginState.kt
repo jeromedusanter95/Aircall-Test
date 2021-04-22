@@ -1,7 +1,7 @@
 package com.jeromedusanter.aircalltest.ui.login
 
-import com.jeromedusanter.aircalltest.ui.base.BaseState
+import com.jeromedusanter.aircalltest.ui.base.IState
 
-sealed class LoginState : BaseState {
+sealed class LoginState : IState {
     object NavToMainActivity : LoginState()
 }

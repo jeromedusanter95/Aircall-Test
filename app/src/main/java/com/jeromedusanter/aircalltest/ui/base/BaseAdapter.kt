@@ -13,7 +13,7 @@ import java.util.*
 import kotlin.reflect.KFunction
 import kotlin.reflect.full.memberFunctions
 
-abstract class BaseAdapter<B : ViewDataBinding, O : UiModel, VM : BaseItemViewModel<O>>(
+abstract class BaseAdapter<B : ViewDataBinding, O : IUiModel, VM : BaseItemViewModel<O>>(
     @LayoutRes protected open val resId: Int
 ) : RecyclerView.Adapter<BaseAdapter.ViewHolder<B>>() {
 

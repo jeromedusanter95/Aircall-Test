@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class GetRepoGithubUseCase @Inject constructor(
     private val repository: RepoGithubRepository
-) : IUseCase<Boolean, Single<List<RepoGithub>>> {
+) : IUseCase<Nothing, Single<List<RepoGithub>>> {
 
-    override fun execute(param: Boolean): Single<List<RepoGithub>> {
+    override fun execute(param: Nothing?): Single<List<RepoGithub>> {
         return repository.getRepoGithub()
     }
 }

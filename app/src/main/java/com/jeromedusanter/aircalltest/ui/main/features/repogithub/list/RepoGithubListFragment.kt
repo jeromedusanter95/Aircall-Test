@@ -30,10 +30,7 @@ class RepoGithubListFragment :
             is RepoGithubState.EmptyRepoGithubList -> binding.statefulLayoutRepoGithub.showEmpty()
             is RepoGithubState.ErrorRepoGithubList -> binding.statefulLayoutRepoGithub.showError()
             is RepoGithubState.LoadingRepoGithubList -> binding.statefulLayoutRepoGithub.showLoading()
-            is RepoGithubState.SuccessRepoGithubList -> {
-                adapter.addItems(state.repoGithubListList, clear = true)
-                binding.statefulLayoutRepoGithub.showContent()
-            }
+            is RepoGithubState.SuccessRepoGithubList -> binding.statefulLayoutRepoGithub.showContent()
             is RepoGithubState.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepositoryDetails())
         }
     }

@@ -1,7 +1,6 @@
 package com.jeromedusanter.aircalltest.ui.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -10,7 +9,7 @@ import com.jeromedusanter.aircalltest.BR
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-abstract class BaseActivity<B : ViewDataBinding, BS : BaseState, VM : BaseViewModel<BS>> : AppCompatActivity() {
+abstract class BaseActivity<B : ViewDataBinding, BS : IState, VM : BaseViewModel<BS>> : AppCompatActivity() {
 
     abstract val resId: Int
 

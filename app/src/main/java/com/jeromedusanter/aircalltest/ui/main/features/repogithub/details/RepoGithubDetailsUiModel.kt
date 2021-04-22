@@ -1,6 +1,6 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.details
 
-import com.jeromedusanter.aircalltest.ui.base.UiModel
+import com.jeromedusanter.aircalltest.ui.base.IUiModel
 
 data class RepoGithubDetailsUiModel(
     val name: String,
@@ -8,4 +8,4 @@ data class RepoGithubDetailsUiModel(
     val watchersCount: String,
     val stargazersCount: String,
     val forksCount: String
-) : UiModel
+) : IUiModel

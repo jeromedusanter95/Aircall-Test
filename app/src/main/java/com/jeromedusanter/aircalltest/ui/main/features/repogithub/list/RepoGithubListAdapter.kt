@@ -6,7 +6,7 @@ import com.jeromedusanter.aircalltest.ui.base.BaseAdapter
 
 class RepoGithubListAdapter(
     private val listener: Listener? = null
-) : BaseAdapter<ItemRepoGithubBinding, RepoGithubListUiModel, RepoGithubItemViewModel>(
+) : BaseAdapter<ItemRepoGithubBinding, RepoGithubItemUiModel, RepoGithubItemViewModel>(
     R.layout.item_repo_github
 ) {
     override fun createViewModel(): RepoGithubItemViewModel = RepoGithubItemViewModel(listener)

@@ -1,11 +1,7 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.list
 
-import com.jeromedusanter.aircalltest.ui.base.UiModel
+import com.jeromedusanter.aircalltest.ui.base.IUiModel
 
 data class RepoGithubListUiModel(
-    val id: Long,
-    val name: String,
-    val description: String,
-    val private: Boolean,
-    val createdAt: String
-) : UiModel
+    val list: List<RepoGithubItemUiModel>
+) : IUiModel

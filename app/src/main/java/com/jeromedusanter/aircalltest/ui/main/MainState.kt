@@ -1,5 +1,5 @@
 package com.jeromedusanter.aircalltest.ui.main
 
-import com.jeromedusanter.aircalltest.ui.base.BaseState
+import com.jeromedusanter.aircalltest.ui.base.IState
 
-sealed class MainState : BaseState
+sealed class MainState : IState
