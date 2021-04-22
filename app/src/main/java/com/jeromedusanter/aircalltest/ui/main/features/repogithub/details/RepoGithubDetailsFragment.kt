@@ -12,5 +12,5 @@ class RepoGithubDetailsFragment :
 
     override val resId: Int = R.layout.fragment_repo_github_details
 
-    override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repoGithub) { factory }
+    override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github) { factory }
 }

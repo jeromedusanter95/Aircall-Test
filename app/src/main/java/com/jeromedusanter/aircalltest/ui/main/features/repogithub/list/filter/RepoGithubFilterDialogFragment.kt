@@ -16,7 +16,7 @@ class RepoGithubFilterDialogFragment(val factory: ViewModelProvider.Factory) :
 
     override val resId: Int = R.layout.dialog_repo_github_filter
 
-    override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repoGithub) { factory }
+    override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github) { factory }
 
     override fun initView() {
         super.initView()

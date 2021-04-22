@@ -12,7 +12,7 @@ import com.jeromedusanter.aircalltest.ui.base.BaseActivity
 class MainActivity : BaseActivity<ActivityMainBinding, MainState, MainViewModel>() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
-    private val appBarConfiguration by lazy { AppBarConfiguration(setOf(R.id.fragment_repoGitHubList)) }
+    private val appBarConfiguration by lazy { AppBarConfiguration(setOf(R.id.fragment_repo_github_list)) }
 
     override val resId: Int = R.layout.activity_main
 

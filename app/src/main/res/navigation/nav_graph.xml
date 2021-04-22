@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_repoGithub">
+    app:startDestination="@id/navigation_repo_github">
 
     <navigation
-        android:id="@+id/navigation_repoGithub"
-        app:startDestination="@id/fragment_repoGitHubList">
+        android:id="@+id/navigation_repo_github"
+        app:startDestination="@id/fragment_repo_github_list">
         <fragment
-            android:id="@+id/fragment_repoGitHubList"
+            android:id="@+id/fragment_repo_github_list"
             android:name="com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListFragment"
             android:label="@string/repoGithubList_title"
             tools:layout="@layout/fragment_repo_github_list">
 
             <action
-                android:id="@+id/action_navigateToRepositoryDetails"
-                app:destination="@id/fragment_repoGithubDetails"
+                android:id="@+id/action_navigate_to_repo_github_details"
+                app:destination="@id/fragment_repo_github_details"
                 app:enterAnim="@anim/slide_in_from_right"
                 app:exitAnim="@anim/slide_out_to_left"
                 app:popEnterAnim="@anim/slide_in_from_left"
@@ -24,7 +24,7 @@
 
         </fragment>
         <fragment
-            android:id="@+id/fragment_repoGithubDetails"
+            android:id="@+id/fragment_repo_github_details"
             android:name="com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsFragment"
             android:label="@string/repoGithubDetails_title"
             tools:layout="@layout/fragment_repo_github_details" />
