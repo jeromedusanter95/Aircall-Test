@@ -11,7 +11,7 @@ abstract class BaseViewModel<BS : IState> : ViewModel() {
         get() = _state
     private val _state: SingleLiveEvent<BS> = SingleLiveEvent()
 
-    fun dispatch(state: BS) {
+    protected fun dispatch(state: BS) {
         _state.postValue(state)
     }
 

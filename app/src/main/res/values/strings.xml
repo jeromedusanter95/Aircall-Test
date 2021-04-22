@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Aircall Test</string>
-    <string name="login_title">Login</string>
-    <string name="login_buttonTitleSignIn">Se connecter</string>
+    <string name="login_title">Aircall Test</string>
+    <string name="login_subtitle">by Jérôme Dusanter</string>
+    <string name="login_button_text">Se connecter via Github</string>
     <string name="repoGithubList_title">Dépôts Github</string>
     <string name="repoGithubDetails_title">Détails du dépôt</string>
     <string name="repo_github_list_error_title">Une erreur est survenue…</string>

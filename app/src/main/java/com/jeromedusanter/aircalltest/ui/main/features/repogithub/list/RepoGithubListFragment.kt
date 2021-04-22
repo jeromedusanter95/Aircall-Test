@@ -45,7 +45,6 @@ class RepoGithubListFragment :
             is RepoGithubState.LoadingRepoGithubList -> binding.statefulLayoutRepoGithub.showLoading()
             is RepoGithubState.SuccessRepoGithubList -> binding.statefulLayoutRepoGithub.showContent()
             is RepoGithubState.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepositoryDetails())
-            is RepoGithubState.ShowDialogFilter -> showFilterDialogFragment()
         }
     }
 
@@ -67,7 +66,7 @@ class RepoGithubListFragment :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_filter -> {
-                viewModel.dispatch(RepoGithubState.ShowDialogFilter)
+                showFilterDialogFragment()
                 true
             }
             R.id.item_refresh -> {

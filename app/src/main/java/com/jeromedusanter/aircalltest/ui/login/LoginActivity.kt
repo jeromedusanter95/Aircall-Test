@@ -20,17 +20,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginState, LoginViewMo
         super.onCreate(savedInstanceState)
         intent.data?.let { uri ->
             if (uri.toString().startsWith(REDIRECT_URI)) {
-                viewModel.dispatch(LoginState.NavToMainActivity)
+                startActivity(Intent(this, MainActivity::class.java))
             }
-        } ?: kotlin.run {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         }
-    }
-
-    override fun render(state: LoginState) {
-        super.render(state)
-        when (state) {
-            is LoginState.NavToMainActivity -> startActivity(Intent(this, MainActivity::class.java))
+        binding.buttonLogin.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         }
     }
 

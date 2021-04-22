@@ -6,9 +6,4 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val apiService: ApiService
-) : BaseViewModel<LoginState>() {
-
-    fun clickSignIn() {
-        dispatch(LoginState.NavToMainActivity)
-    }
-}
+) : BaseViewModel<LoginState>()
