@@ -4,7 +4,7 @@ import com.jeromedusanter.aircalltest.domain.base.IModel
 
 data class RepoGithubFilter(
     val sort: RepoGithubSort,
-    val perPage: Long,
+    val perPage: Int,
     val query: String
 ) : IModel {
 

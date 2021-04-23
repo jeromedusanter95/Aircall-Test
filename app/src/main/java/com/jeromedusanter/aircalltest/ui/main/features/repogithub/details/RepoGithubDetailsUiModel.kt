@@ -7,5 +7,6 @@ data class RepoGithubDetailsUiModel(
     val description: String,
     val watchersCount: String,
     val stargazersCount: String,
-    val forksCount: String
+    val forksCount: String,
+    val issueList : List<IssueUiModel>
 ) : IUiModel

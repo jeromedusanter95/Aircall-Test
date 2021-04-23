@@ -3,6 +3,7 @@ package com.jeromedusanter.aircalltest.ui.main.features.repogithub
 import androidx.databinding.ObservableField
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
+import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetIssuesHistoryByRepoSinceLastYearUseCase
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetRepoGithubUseCase
 import com.jeromedusanter.aircalltest.ui.base.BaseViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsMapper
@@ -14,14 +15,15 @@ import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.Re
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubSortUiModel
 import com.jeromedusanter.aircalltest.ui.utils.addOnPropertyChanged
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class RepoGithubViewModel @Inject constructor(
     private val getRepoGithubUseCase: GetRepoGithubUseCase,
+    private val getIssuesHistoryByRepoSinceLastYearUseCase: GetIssuesHistoryByRepoSinceLastYearUseCase,
     private val listMapper: RepoGithubListMapper,
     private val detailsMapper: RepoGithubDetailsMapper,
     private val filterMapper: RepoGithubFilterMapper
@@ -84,7 +86,13 @@ class RepoGithubViewModel @Inject constructor(
 
     fun getRepoGithubList() {
         getRepoGithubUseCase.execute(_selectedFilter.get())
-            .delay(2, TimeUnit.SECONDS) //To see the beautiful lottie animation :)
+            .flatMap { repoGithubList ->
+                Single.merge(repoGithubList.map { repo ->
+                    getIssuesHistoryByRepoSinceLastYearUseCase.execute(Pair(repo.owner, repo.name))
+                        .map { repo.copy(issuesHistory = it.toMutableList()) }
+                })
+                    .toList()
+            }
             .doOnSubscribe { listUiState.set(RepoGithubListStatefulLayout.State.LOADING) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

@@ -7,10 +7,12 @@ data class RepoGithub(
     val id: Long,
     val name: String,
     val url: String,
+    val owner : String,
     val description: String,
     val private: Boolean,
     val createdAt: LocalDate,
     val watchersCount: Int,
     val stargazersCount: Int,
-    val forksCount: Int
+    val forksCount: Int,
+    val issuesHistory: MutableList<IssuesHistoryByWeek>
 ) : IModel

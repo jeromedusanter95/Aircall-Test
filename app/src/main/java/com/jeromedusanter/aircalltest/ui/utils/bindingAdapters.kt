@@ -1,6 +1,7 @@
 package com.jeromedusanter.aircalltest.ui.utils
 
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -19,4 +20,9 @@ internal fun setList(view: RecyclerView, list: List<IUiModel>?) {
 @BindingAdapter("app:uiState")
 internal fun setUiState(view: StatefulLayout, state: String) {
     view.state = state
+}
+
+@BindingAdapter("app:visibleOrGone")
+fun setVisibility(view: View, visible: Boolean) {
+    view.visibility = if (visible) View.VISIBLE else View.GONE
 }

@@ -1,8 +1,9 @@
-package com.jeromedusanter.aircalltest.data.remote.repogithub
+package com.jeromedusanter.aircalltest.data.remote.repogithub.mappers
 
 import com.jeromedusanter.aircalltest.data.base.IMapper
 import com.jeromedusanter.aircalltest.data.remote.repogithub.models.RepoGithubApi
 import com.jeromedusanter.aircalltest.data.utils.toLocaleDate
+import com.jeromedusanter.aircalltest.domain.models.IssuesHistoryByWeek
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import javax.inject.Inject
 
@@ -19,12 +20,14 @@ class RepoGithubDataMapper @Inject constructor() : IMapper<RepoGithub, RepoGithu
             model.id,
             model.name,
             model.url,
+            owner = model.ownerApi.login,
             model.description.orEmpty(),
             model.private,
             model.createdAt.toLocaleDate(),
             model.watchersCount,
             model.stargazersCount,
-            model.forksCount
+            model.forksCount,
+            mutableListOf()
         )
     }
 

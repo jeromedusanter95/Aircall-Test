@@ -8,6 +8,10 @@ internal fun LocalDate.toDatabaseFormatString(): String {
     return format(DateTimeFormatter.ISO_DATE_TIME)
 }
 
+internal fun LocalDateTime.toDatabaseFormatString(): String {
+    return format(DateTimeFormatter.ISO_DATE_TIME)
+}
+
 internal fun String.toLocaleDateTime(): LocalDateTime {
     return LocalDateTime.parse(
         this,

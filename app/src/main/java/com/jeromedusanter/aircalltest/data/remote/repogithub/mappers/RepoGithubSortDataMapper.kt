@@ -1,4 +1,4 @@
-package com.jeromedusanter.aircalltest.data.remote.repogithub
+package com.jeromedusanter.aircalltest.data.remote.repogithub.mappers
 
 import com.jeromedusanter.aircalltest.data.base.IMapper
 import com.jeromedusanter.aircalltest.data.remote.repogithub.models.SortRepoGithubApi

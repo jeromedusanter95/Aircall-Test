@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.jeromedusanter.aircalltest.data.remote.RequestManager
 import com.jeromedusanter.aircalltest.di.ComponentManager
 import dagger.android.AndroidInjector
@@ -31,6 +32,7 @@ class Application : Application(), HasActivityInjector, HasSupportFragmentInject
 
     override fun onCreate() {
         super.onCreate()
+        AndroidThreeTen.init(applicationContext)
         ComponentManager.init(this, RequestManager.getRetrofit())
         ComponentManager.applicationComponent.inject(this)
     }

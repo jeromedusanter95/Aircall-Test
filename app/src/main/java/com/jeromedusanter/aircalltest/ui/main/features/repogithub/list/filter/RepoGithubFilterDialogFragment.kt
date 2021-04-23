@@ -36,14 +36,14 @@ class RepoGithubFilterDialogFragment(val factory: ViewModelProvider.Factory) :
                     if (query.isEmpty()) getString(R.string.repo_github_filter_per_page_error) else null
                 textInputPerPage.error =
                     if (perPage.isEmpty() || perPage.toLong() <= 0) getString(R.string.repo_github_filter_query_error) else null
-                if (query.isNotEmpty() && perPage.isNotEmpty() && perPage.toLong() > 0) {
+                if (query.isNotEmpty() && perPage.isNotEmpty() && perPage.toInt() > 0) {
                     requireContext().hideKeyboard(requireView())
                     dismiss()
                     this@RepoGithubFilterDialogFragment.viewModel.changeFilter(
                         RepoGithubFilterUiModel(
                             sort = RepoGithubSortUiModel.fromOrdinal(radioGroupSort.checkedRadioButtonId)
                                 ?: RepoGithubSortUiModel.STARS,
-                            perPage = perPage.toLong(),
+                            perPage = perPage.toInt(),
                             query = query
                         )
                     )

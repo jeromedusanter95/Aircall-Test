@@ -4,6 +4,6 @@ import com.jeromedusanter.aircalltest.ui.base.IUiModel
 
 data class RepoGithubFilterUiModel(
     val sort: RepoGithubSortUiModel,
-    val perPage: Long,
+    val perPage: Int,
     val query: String
 ) : IUiModel

@@ -13,4 +13,11 @@ class RepoGithubDetailsFragment :
     override val resId: Int = R.layout.fragment_repo_github_details
 
     override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github) { factory }
+
+    private val adapter by lazy { IssueAdapter() }
+
+    override fun initView() {
+        super.initView()
+        binding.recyclerIssues.adapter = adapter
+    }
 }

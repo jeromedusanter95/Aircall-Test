@@ -4,7 +4,9 @@ import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import com.jeromedusanter.aircalltest.ui.base.IMapper
 import javax.inject.Inject
 
-class RepoGithubDetailsMapper @Inject constructor() : IMapper<RepoGithub, RepoGithubDetailsUiModel> {
+class RepoGithubDetailsMapper @Inject constructor(
+    private val issueMapper: IssueMapper
+) : IMapper<RepoGithub, RepoGithubDetailsUiModel> {
 
     override fun mapModelToUiModel(model: RepoGithub): RepoGithubDetailsUiModel {
         return RepoGithubDetailsUiModel(
@@ -12,7 +14,8 @@ class RepoGithubDetailsMapper @Inject constructor() : IMapper<RepoGithub, RepoGi
             model.description,
             model.watchersCount.toString(),
             model.stargazersCount.toString(),
-            model.forksCount.toString()
+            model.forksCount.toString(),
+            model.issuesHistory.map { issueMapper.mapModelToUiModel(it) }
         )
     }
 
