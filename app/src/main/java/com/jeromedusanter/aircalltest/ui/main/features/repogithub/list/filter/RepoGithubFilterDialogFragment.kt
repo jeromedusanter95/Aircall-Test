@@ -7,12 +7,12 @@ import com.google.android.material.radiobutton.MaterialRadioButton
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.DialogRepoGithubFilterBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseDialogFragment
-import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubState
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubAction
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
 import com.jeromedusanter.aircalltest.ui.utils.hideKeyboard
 
 class RepoGithubFilterDialogFragment(val factory: ViewModelProvider.Factory) :
-    BaseDialogFragment<DialogRepoGithubFilterBinding, RepoGithubState, RepoGithubViewModel>() {
+    BaseDialogFragment<DialogRepoGithubFilterBinding, RepoGithubAction, RepoGithubViewModel>() {
 
     override val resId: Int = R.layout.dialog_repo_github_filter
 

@@ -3,12 +3,12 @@ package com.jeromedusanter.aircalltest.ui.main.features.repogithub
 import androidx.databinding.ObservableField
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
-import com.jeromedusanter.aircalltest.domain.models.RepoGithubSort
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetRepoGithubUseCase
 import com.jeromedusanter.aircalltest.ui.base.BaseViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListMapper
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListStatefulLayout
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterUiModel
@@ -25,11 +25,12 @@ class RepoGithubViewModel @Inject constructor(
     private val listMapper: RepoGithubListMapper,
     private val detailsMapper: RepoGithubDetailsMapper,
     private val filterMapper: RepoGithubFilterMapper
-) : BaseViewModel<RepoGithubState>() {
+) : BaseViewModel<RepoGithubAction>() {
 
     val detailsUiModel = ObservableField<RepoGithubDetailsUiModel>()
     private val _selectedRepoGithub = ObservableField<RepoGithub>()
 
+    val listUiState = ObservableField<RepoGithubListStatefulLayout.State>()
     val listUiModel = ObservableField<RepoGithubListUiModel>()
     private val _repoGithubList = ObservableField<List<RepoGithub>>()
 
@@ -47,9 +48,11 @@ class RepoGithubViewModel @Inject constructor(
 
         _repoGithubList.addOnPropertyChanged {
             it.get()?.let {
-                listUiModel.set(RepoGithubListUiModel(it.map {
-                    listMapper.mapModelToUiModel(it)
-                }))
+                listUiModel.set(
+                    RepoGithubListUiModel(
+                        it.map { listMapper.mapModelToUiModel(it) }
+                    )
+                )
             }
         }
 
@@ -66,7 +69,7 @@ class RepoGithubViewModel @Inject constructor(
 
     fun selectRepoGithub(id: Long) {
         _selectedRepoGithub.set(_repoGithubList.get()?.find { it.id == id })
-        dispatch(RepoGithubState.NavToRepoGithubDetails)
+        dispatch(RepoGithubAction.NavToRepoGithubDetails)
     }
 
     fun refreshPage() {
@@ -82,21 +85,18 @@ class RepoGithubViewModel @Inject constructor(
     fun getRepoGithubList() {
         getRepoGithubUseCase.execute(_selectedFilter.get())
             .delay(2, TimeUnit.SECONDS) //To see the beautiful lottie animation :)
-            .doOnSubscribe { dispatch(RepoGithubState.LoadingRepoGithubList) }
+            .doOnSubscribe { listUiState.set(RepoGithubListStatefulLayout.State.LOADING) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ list ->
                 _repoGithubList.set(list)
-                dispatch(
-                    if (list.isEmpty()) {
-                        RepoGithubState.EmptyRepoGithubList
-                    } else {
-                        RepoGithubState.SuccessRepoGithubList
-                    }
+                listUiState.set(
+                    if (list.isEmpty()) RepoGithubListStatefulLayout.State.EMPTY
+                    else RepoGithubListStatefulLayout.State.CONTENT
                 )
             }, {
                 it.printStackTrace()
-                dispatch(RepoGithubState.ErrorRepoGithubList)
+                listUiState.set(RepoGithubListStatefulLayout.State.ERROR)
             })
             .addTo(disposable)
     }

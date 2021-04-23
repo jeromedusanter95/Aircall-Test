@@ -9,8 +9,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.jeromedusanter.aircalltest.BR
 
-abstract class BaseDialogFragment<B : ViewDataBinding, BS : IState, VM : BaseViewModel<BS>> :
-    DialogFragment() {
+abstract class BaseDialogFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel<A>> : DialogFragment(), IView<A> {
 
     abstract val resId: Int
 
@@ -34,9 +33,7 @@ abstract class BaseDialogFragment<B : ViewDataBinding, BS : IState, VM : BaseVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.state.observe(viewLifecycleOwner, { state ->
-            render(state)
-        })
+        viewModel.action.observe(viewLifecycleOwner, { action -> onAction(action) })
     }
 
     override fun onStart() {
@@ -48,6 +45,4 @@ abstract class BaseDialogFragment<B : ViewDataBinding, BS : IState, VM : BaseVie
             dialog.window?.setLayout(width, height)
         }
     }
-
-    open fun render(state: BS) = Unit
 }

@@ -4,11 +4,11 @@ import androidx.navigation.navGraphViewModels
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.FragmentRepoGithubDetailsBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseFragment
-import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubState
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubAction
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
 
 class RepoGithubDetailsFragment :
-    BaseFragment<FragmentRepoGithubDetailsBinding, RepoGithubState, RepoGithubViewModel>() {
+    BaseFragment<FragmentRepoGithubDetailsBinding, RepoGithubAction, RepoGithubViewModel>() {
 
     override val resId: Int = R.layout.fragment_repo_github_details
 

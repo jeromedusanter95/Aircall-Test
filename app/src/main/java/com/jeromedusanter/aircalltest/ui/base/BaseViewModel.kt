@@ -3,16 +3,16 @@ package com.jeromedusanter.aircalltest.ui.base
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class BaseViewModel<BS : IState> : ViewModel() {
+abstract class BaseViewModel<A : IAction> : ViewModel() {
 
     val disposable = CompositeDisposable()
 
-    val state: SingleLiveEvent<BS>
-        get() = _state
-    private val _state: SingleLiveEvent<BS> = SingleLiveEvent()
+    val action: SingleLiveEvent<A>
+        get() = _action
+    private val _action: SingleLiveEvent<A> = SingleLiveEvent()
 
-    protected fun dispatch(state: BS) {
-        _state.postValue(state)
+    protected fun dispatch(action: A) {
+        _action.postValue(action)
     }
 
     override fun onCleared() {

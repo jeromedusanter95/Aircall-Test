@@ -9,7 +9,7 @@ import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.ActivityMainBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseActivity
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainState, MainViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainAction, MainViewModel>() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
     private val appBarConfiguration by lazy { AppBarConfiguration(setOf(R.id.fragment_repo_github_list)) }

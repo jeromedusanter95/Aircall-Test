@@ -9,7 +9,7 @@ import com.jeromedusanter.aircalltest.databinding.ActivityLoginBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseActivity
 import com.jeromedusanter.aircalltest.ui.main.MainActivity
 
-class LoginActivity : BaseActivity<ActivityLoginBinding, LoginState, LoginViewModel>() {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginAction, LoginViewModel>() {
 
     override val resId: Int = R.layout.activity_login
 

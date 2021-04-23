@@ -17,7 +17,7 @@ class RepoGithubListStatefulLayout @JvmOverloads constructor(
 
     init {
         setStateView(
-            State.LOADING,
+            State.LOADING.value,
             LayoutInflater.from(getContext()).inflate(
                 R.layout.sfl_repo_github_list_loading,
                 null
@@ -25,7 +25,7 @@ class RepoGithubListStatefulLayout @JvmOverloads constructor(
         )
 
         setStateView(
-            State.EMPTY,
+            State.EMPTY.value,
             LayoutInflater.from(getContext()).inflate(
                 R.layout.sfl_repo_github_list_empty,
                 null
@@ -40,31 +40,14 @@ class RepoGithubListStatefulLayout @JvmOverloads constructor(
             this,
             false
         )
-        setStateView(State.ERROR, binding.root)
+        setStateView(State.ERROR.value, binding.root)
         setup.invoke(binding)
     }
 
-    fun showContent() {
-        state = StatefulLayout.State.CONTENT
-    }
-
-    fun showError() {
-        state = State.ERROR
-    }
-
-    fun showLoading() {
-        state = State.LOADING
-    }
-
-    fun showEmpty() {
-        state = State.EMPTY
-    }
-
-    class State : StatefulLayout.State() {
-        companion object {
-            const val ERROR = "error"
-            const val LOADING = "loading"
-            const val EMPTY = "empty"
-        }
+    enum class State constructor(val value: String) {
+        CONTENT(StatefulLayout.State.CONTENT),
+        ERROR("error"),
+        LOADING("loading"),
+        EMPTY("empty")
     }
 }

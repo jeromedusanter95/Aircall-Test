@@ -8,12 +8,12 @@ import androidx.navigation.navGraphViewModels
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.FragmentRepoGithubListBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseFragment
-import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubState
+import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubAction
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterDialogFragment
 
 class RepoGithubListFragment :
-    BaseFragment<FragmentRepoGithubListBinding, RepoGithubState, RepoGithubViewModel>() {
+    BaseFragment<FragmentRepoGithubListBinding, RepoGithubAction, RepoGithubViewModel>() {
 
     override val resId: Int = R.layout.fragment_repo_github_list
 
@@ -34,14 +34,10 @@ class RepoGithubListFragment :
         }
     }
 
-    override fun render(state: RepoGithubState) {
-        super.render(state)
-        when (state) {
-            is RepoGithubState.EmptyRepoGithubList -> binding.statefulLayoutRepoGithub.showEmpty()
-            is RepoGithubState.ErrorRepoGithubList -> binding.statefulLayoutRepoGithub.showError()
-            is RepoGithubState.LoadingRepoGithubList -> binding.statefulLayoutRepoGithub.showLoading()
-            is RepoGithubState.SuccessRepoGithubList -> binding.statefulLayoutRepoGithub.showContent()
-            is RepoGithubState.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepoGithubDetails())
+    override fun onAction(action: RepoGithubAction) {
+        super.onAction(action)
+        when (action) {
+            is RepoGithubAction.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepoGithubDetails())
         }
     }
 

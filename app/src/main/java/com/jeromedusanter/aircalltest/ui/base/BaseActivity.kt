@@ -9,7 +9,7 @@ import com.jeromedusanter.aircalltest.BR
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-abstract class BaseActivity<B : ViewDataBinding, BS : IState, VM : BaseViewModel<BS>> : AppCompatActivity() {
+abstract class BaseActivity<B : ViewDataBinding, A : IAction, VM : BaseViewModel<A>> : AppCompatActivity(), IView<A> {
 
     abstract val resId: Int
 
@@ -30,8 +30,6 @@ abstract class BaseActivity<B : ViewDataBinding, BS : IState, VM : BaseViewModel
 
     override fun onResume() {
         super.onResume()
-        viewModel.state.observe(this, { state -> render(state) })
+        viewModel.action.observe(this, { action -> onAction(action) })
     }
-
-    open fun render(state: BS) = Unit
 }

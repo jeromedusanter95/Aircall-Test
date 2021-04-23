@@ -15,8 +15,7 @@ import com.jeromedusanter.aircalltest.BR
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-abstract class BaseFragment<B : ViewDataBinding, BS : IState, VM : BaseViewModel<BS>> :
-    Fragment() {
+abstract class BaseFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel<A>> : Fragment(), IView<A> {
 
     abstract val resId: Int
 
@@ -48,12 +47,8 @@ abstract class BaseFragment<B : ViewDataBinding, BS : IState, VM : BaseViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.state.observe(viewLifecycleOwner, { state ->
-            render(state)
-        })
+        viewModel.action.observe(viewLifecycleOwner, { action -> onAction(action) })
     }
-
-    open fun render(state: BS) = Unit
 
     fun navigate(navDirections: NavDirections) {
         try {
