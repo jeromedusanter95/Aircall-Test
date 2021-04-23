@@ -9,15 +9,14 @@
             type="com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/unit_3"
-        app:cardElevation="@dimen/unit_1">
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="@dimen/unit_2">
 
             <TextView
@@ -111,6 +110,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
