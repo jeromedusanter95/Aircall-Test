@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.jeromedusanter.aircalltest.BR
 
-abstract class BaseDialogFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel<A>> : DialogFragment(), IView<A> {
+abstract class BaseDialogFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel<A>> :
+    DialogFragment(), IView<A> {
 
     abstract val resId: Int
 
@@ -22,15 +24,14 @@ abstract class BaseDialogFragment<B : ViewDataBinding, A : IAction, VM : BaseVie
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        retainInstance = true
         binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.setVariable(BR.viewModel, viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
-        initView()
         return binding.root
     }
 
-    open fun initView() = Unit
-
+    @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.action.observe(viewLifecycleOwner, { action -> onAction(action) })

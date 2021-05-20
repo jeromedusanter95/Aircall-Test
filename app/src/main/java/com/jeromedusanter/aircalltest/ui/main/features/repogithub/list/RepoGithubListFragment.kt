@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.navigation.navGraphViewModels
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.FragmentRepoGithubListBinding
@@ -26,8 +27,8 @@ class RepoGithubListFragment :
         setHasOptionsMenu(true)
     }
 
-    override fun initView() {
-        super.initView()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.recyclerRepoGithub.adapter = adapter
         binding.statefulLayoutRepoGithub.setErrorView {
             buttonRetry.setOnClickListener { viewModel.getRepoGithubList() }
@@ -38,6 +39,7 @@ class RepoGithubListFragment :
         super.onAction(action)
         when (action) {
             is RepoGithubAction.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepoGithubDetails())
+            is RepoGithubAction.InvalidateOptionsMenu -> requireActivity().invalidateOptionsMenu()
         }
     }
 
@@ -48,12 +50,36 @@ class RepoGithubListFragment :
     }
 
     private fun showFilterDialogFragment() {
-        RepoGithubFilterDialogFragment(factory).show(childFragmentManager, "")
+        RepoGithubFilterDialogFragment(factory).show(parentFragmentManager, "")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_repo_github_list, menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val itemFilter = menu.findItem(R.id.item_filter)
+        val itemRefresh = menu.findItem(R.id.item_refresh)
+        when (viewModel.listUiState.get()) {
+            RepoGithubListStatefulLayout.State.CONTENT -> {
+                itemFilter.isVisible = true
+                itemRefresh.isVisible = true
+            }
+            RepoGithubListStatefulLayout.State.ERROR -> {
+                itemFilter.isVisible = true
+                itemRefresh.isVisible = true
+            }
+            RepoGithubListStatefulLayout.State.EMPTY -> {
+                itemFilter.isVisible = true
+                itemRefresh.isVisible = true
+            }
+            RepoGithubListStatefulLayout.State.LOADING -> {
+                itemFilter.isVisible = false
+                itemRefresh.isVisible = false
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

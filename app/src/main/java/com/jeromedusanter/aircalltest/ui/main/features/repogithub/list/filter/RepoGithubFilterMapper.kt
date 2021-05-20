@@ -1,5 +1,6 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter
 
+import androidx.databinding.ObservableField
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubSort
 import com.jeromedusanter.aircalltest.ui.base.IMapper

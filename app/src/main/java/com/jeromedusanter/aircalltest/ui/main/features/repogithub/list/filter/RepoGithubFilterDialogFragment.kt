@@ -1,6 +1,9 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter
 
 import android.content.res.ColorStateList
+import android.os.Bundle
+import android.view.View
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navGraphViewModels
 import com.google.android.material.radiobutton.MaterialRadioButton
@@ -18,8 +21,8 @@ class RepoGithubFilterDialogFragment(val factory: ViewModelProvider.Factory) :
 
     override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github) { factory }
 
-    override fun initView() {
-        super.initView()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         RepoGithubSortUiModel.values().forEach {
             binding.radioGroupSort.addView(MaterialRadioButton(requireContext())
                 .apply {

@@ -4,4 +4,5 @@ import com.jeromedusanter.aircalltest.ui.base.IAction
 
 sealed class RepoGithubAction : IAction {
     object NavToRepoGithubDetails : RepoGithubAction()
+    object InvalidateOptionsMenu : RepoGithubAction()
 }

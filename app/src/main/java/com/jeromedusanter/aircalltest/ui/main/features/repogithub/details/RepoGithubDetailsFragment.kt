@@ -1,5 +1,7 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.details
 
+import android.os.Bundle
+import android.view.View
 import androidx.navigation.navGraphViewModels
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.FragmentRepoGithubDetailsBinding
@@ -16,8 +18,8 @@ class RepoGithubDetailsFragment :
 
     private val adapter by lazy { IssueAdapter() }
 
-    override fun initView() {
-        super.initView()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.recyclerIssues.adapter = adapter
     }
 }

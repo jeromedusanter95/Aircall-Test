@@ -67,6 +67,10 @@ class RepoGithubViewModel @Inject constructor(
                 }
             }
         }
+
+        listUiState.addOnPropertyChanged {
+            dispatch(RepoGithubAction.InvalidateOptionsMenu)
+        }
     }
 
     fun selectRepoGithub(id: Long) {
