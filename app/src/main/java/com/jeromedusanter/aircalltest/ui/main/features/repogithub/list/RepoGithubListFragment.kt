@@ -50,7 +50,7 @@ class RepoGithubListFragment :
     }
 
     private fun showFilterDialogFragment() {
-        RepoGithubFilterDialogFragment(factory).show(parentFragmentManager, "")
+        RepoGithubFilterDialogFragment.newInstance().show(childFragmentManager, "")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -37,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/unit_2"
-                android:checkedButton="@{viewModel.filterUiModel.sort.ordinal()}"
+                android:checkedButton="@={viewModel.filterUiModel.sort}"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,10 +65,11 @@
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:singleLine="true"
-                    android:text="@{viewModel.filterUiModel.query}"
+                    android:text="@={viewModel.filterUiModel.query}"
                     android:textAppearance="@style/AppTheme.Text.EditText" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_per_page"
@@ -92,7 +93,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
                     android:singleLine="true"
-                    android:text="@{String.valueOf(viewModel.filterUiModel.perPage)}"
+                    android:text="@={viewModel.filterUiModel.perPage}"
                     android:textAppearance="@style/AppTheme.Text.EditText" />
 
             </com.google.android.material.textfield.TextInputLayout>

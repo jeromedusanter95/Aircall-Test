@@ -1,8 +1,8 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub
 
 import androidx.databinding.ObservableField
-import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
+import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetIssuesHistoryByRepoSinceLastYearUseCase
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetRepoGithubUseCase
 import com.jeromedusanter.aircalltest.ui.base.BaseViewModel
@@ -13,7 +13,6 @@ import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithu
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterUiModel
-import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubSortUiModel
 import com.jeromedusanter.aircalltest.ui.utils.addOnPropertyChanged
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -36,7 +35,7 @@ class RepoGithubViewModel @Inject constructor(
     val listUiModel = ObservableField<RepoGithubListUiModel>()
     private val _repoGithubList = ObservableField<List<RepoGithub>>()
 
-    val filterUiModel = ObservableField<RepoGithubFilterUiModel>()
+    var filterUiModel = RepoGithubFilterUiModel(0, "0", "")
     private val _selectedFilter = ObservableField(RepoGithubFilter.newDefaultInstance())
 
     init {
@@ -61,9 +60,9 @@ class RepoGithubViewModel @Inject constructor(
         _selectedFilter.addOnPropertyChanged {
             it.get()?.let {
                 if (it == RepoGithubFilter.newDefaultInstance()) {
-                    filterUiModel.set(RepoGithubFilterUiModel(RepoGithubSortUiModel.STARS, 0, ""))
+                    filterUiModel = RepoGithubFilterUiModel(0, "0", "")
                 } else {
-                    filterUiModel.set(filterMapper.mapModelToUiModel(it))
+                    filterUiModel = filterMapper.mapModelToUiModel(it)
                 }
             }
         }
@@ -83,8 +82,18 @@ class RepoGithubViewModel @Inject constructor(
         getRepoGithubList()
     }
 
-    fun changeFilter(uiModel: RepoGithubFilterUiModel) {
-        _selectedFilter.set(filterMapper.mapUiModelToModel(uiModel))
+    fun tryChangeFilter() {
+        dispatch(RepoGithubAction.ShowErrorQueryError(filterUiModel.query.isEmpty()))
+        dispatch(RepoGithubAction.ShowErrorPerPageError(filterUiModel.perPage.isEmpty() || filterUiModel.perPage.toInt() <= 0))
+        if (filterUiModel.query.isNotEmpty() && filterUiModel.perPage.isNotEmpty() && filterUiModel.perPage.toInt() > 0) {
+            dispatch(RepoGithubAction.HideKeyBoard)
+            dispatch(RepoGithubAction.DismissFilterDialog)
+            changeFilter()
+        }
+    }
+
+    private fun changeFilter() {
+        _selectedFilter.set(filterMapper.mapUiModelToModel(filterUiModel))
         getRepoGithubList()
     }
 

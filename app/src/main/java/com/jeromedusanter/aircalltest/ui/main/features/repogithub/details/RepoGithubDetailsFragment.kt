@@ -9,8 +9,7 @@ import com.jeromedusanter.aircalltest.ui.base.BaseFragment
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubAction
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
 
-class RepoGithubDetailsFragment :
-    BaseFragment<FragmentRepoGithubDetailsBinding, RepoGithubAction, RepoGithubViewModel>() {
+class RepoGithubDetailsFragment : BaseFragment<FragmentRepoGithubDetailsBinding, RepoGithubAction, RepoGithubViewModel>() {
 
     override val resId: Int = R.layout.fragment_repo_github_details
 

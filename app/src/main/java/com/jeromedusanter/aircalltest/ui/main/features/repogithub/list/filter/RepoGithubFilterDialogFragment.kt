@@ -1,10 +1,9 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.ObservableField
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navGraphViewModels
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.jeromedusanter.aircalltest.R
@@ -14,13 +13,14 @@ import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubActi
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
 import com.jeromedusanter.aircalltest.ui.utils.hideKeyboard
 
-class RepoGithubFilterDialogFragment(val factory: ViewModelProvider.Factory) :
+class RepoGithubFilterDialogFragment :
     BaseDialogFragment<DialogRepoGithubFilterBinding, RepoGithubAction, RepoGithubViewModel>() {
 
     override val resId: Int = R.layout.dialog_repo_github_filter
 
     override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github) { factory }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         RepoGithubSortUiModel.values().forEach {
@@ -31,27 +31,32 @@ class RepoGithubFilterDialogFragment(val factory: ViewModelProvider.Factory) :
                     buttonTintList = ColorStateList.valueOf(R.color.purple_700)
                 })
         }
-        with(binding) {
-            buttonValidate.setOnClickListener {
-                val query = editQuery.text.toString()
-                val perPage = editPerPage.text.toString()
-                textInputQuery.error =
-                    if (query.isEmpty()) getString(R.string.repo_github_filter_per_page_error) else null
-                textInputPerPage.error =
-                    if (perPage.isEmpty() || perPage.toLong() <= 0) getString(R.string.repo_github_filter_query_error) else null
-                if (query.isNotEmpty() && perPage.isNotEmpty() && perPage.toInt() > 0) {
-                    requireContext().hideKeyboard(requireView())
-                    dismiss()
-                    this@RepoGithubFilterDialogFragment.viewModel.changeFilter(
-                        RepoGithubFilterUiModel(
-                            sort = RepoGithubSortUiModel.fromOrdinal(radioGroupSort.checkedRadioButtonId)
-                                ?: RepoGithubSortUiModel.STARS,
-                            perPage = perPage.toInt(),
-                            query = query
-                        )
-                    )
-                }
+        binding.buttonValidate.setOnClickListener {
+            viewModel.tryChangeFilter()
+        }
+    }
+
+    override fun onAction(action: RepoGithubAction) {
+        super.onAction(action)
+        when (action) {
+            RepoGithubAction.DismissFilterDialog -> dismiss()
+            RepoGithubAction.HideKeyBoard -> requireContext().hideKeyboard(requireView())
+            is RepoGithubAction.ShowErrorPerPageError -> {
+                binding.textInputPerPage.error =
+                    if (action.showError)
+                        getString(R.string.repo_github_filter_query_error)
+                    else null
+            }
+            is RepoGithubAction.ShowErrorQueryError -> {
+                binding.textInputQuery.error =
+                    if (action.showError)
+                        getString(R.string.repo_github_filter_per_page_error)
+                    else null
             }
         }
+    }
+
+    companion object {
+        fun newInstance(): RepoGithubFilterDialogFragment = RepoGithubFilterDialogFragment()
     }
 }

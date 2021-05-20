@@ -30,6 +30,6 @@ abstract class BaseActivity<B : ViewDataBinding, A : IAction, VM : BaseViewModel
 
     override fun onResume() {
         super.onResume()
-        viewModel.action.observe(this, { action -> onAction(action) })
+        viewModel.action.observe(this, { action -> action?.let { onAction(action) } })
     }
 }
