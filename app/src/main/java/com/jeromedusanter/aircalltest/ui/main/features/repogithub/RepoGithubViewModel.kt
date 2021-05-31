@@ -1,6 +1,9 @@
 package com.jeromedusanter.aircalltest.ui.main.features.repogithub
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetIssuesHistoryByRepoSinceLastYearUseCase
@@ -28,34 +31,23 @@ class RepoGithubViewModel @Inject constructor(
     private val filterMapper: RepoGithubFilterMapper
 ) : BaseViewModel<RepoGithubAction>() {
 
-    val detailsUiModel = ObservableField<RepoGithubDetailsUiModel>()
-    private val _selectedRepoGithub = ObservableField<RepoGithub>()
+    private val _selectedRepoGithub = MutableLiveData<RepoGithub>()
+    val detailsUiModel = Transformations.map(_selectedRepoGithub) {
+        it?.let { detailsMapper.mapModelToUiModel(it) }
+    }
 
-    val listUiState = ObservableField<RepoGithubListStatefulLayout.State>()
-    val listUiModel = ObservableField<RepoGithubListUiModel>()
-    private val _repoGithubList = ObservableField<List<RepoGithub>>()
+    val listUiState = ObservableField(RepoGithubListStatefulLayout.State.CONTENT)
 
-    var filterUiModel = RepoGithubFilterUiModel(0, "0", "")
+    private val _repoGithubList = MutableLiveData<List<RepoGithub>>()
+    val listUiModel: LiveData<RepoGithubListUiModel> = Transformations.map(_repoGithubList) {
+        RepoGithubListUiModel(it?.map { listMapper.mapModelToUiModel(it) } ?: emptyList())
+    }
+
     private val _selectedFilter = ObservableField(RepoGithubFilter.newDefaultInstance())
+    var filterUiModel = RepoGithubFilterUiModel(0, "0", "")
 
     init {
         getRepoGithubList()
-
-        _selectedRepoGithub.addOnPropertyChanged {
-            it.get()?.let {
-                detailsUiModel.set(detailsMapper.mapModelToUiModel(it))
-            }
-        }
-
-        _repoGithubList.addOnPropertyChanged {
-            it.get()?.let {
-                listUiModel.set(
-                    RepoGithubListUiModel(
-                        it.map { listMapper.mapModelToUiModel(it) }
-                    )
-                )
-            }
-        }
 
         _selectedFilter.addOnPropertyChanged {
             it.get()?.let {
@@ -73,7 +65,7 @@ class RepoGithubViewModel @Inject constructor(
     }
 
     fun selectRepoGithub(id: Long) {
-        _selectedRepoGithub.set(_repoGithubList.get()?.find { it.id == id })
+        _selectedRepoGithub.value = _repoGithubList.value?.find { it.id == id }
         dispatch(RepoGithubAction.NavToRepoGithubDetails)
     }
 
@@ -110,7 +102,7 @@ class RepoGithubViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ list ->
-                _repoGithubList.set(list)
+                _repoGithubList.value = list
                 listUiState.set(
                     if (list.isEmpty()) RepoGithubListStatefulLayout.State.EMPTY
                     else RepoGithubListStatefulLayout.State.CONTENT

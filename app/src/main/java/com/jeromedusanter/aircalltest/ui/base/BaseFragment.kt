@@ -33,6 +33,7 @@ abstract class BaseFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel
         AndroidSupportInjection.inject(this)
     }
 
+    @CallSuper
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,18 +42,8 @@ abstract class BaseFragment<B : ViewDataBinding, A : IAction, VM : BaseViewModel
         binding = DataBindingUtil.inflate(inflater, resId, container, false)
         binding.setVariable(BR.viewModel, viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
+        viewModel.action.observe(viewLifecycleOwner, { action -> action?.let { onAction(action) } })
         return binding.root
-    }
-
-    open fun initView() = Unit
-
-    @CallSuper
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        viewModel.action.observe(viewLifecycleOwner, { action ->
-            action?.let { onAction(action) }
-        })
     }
 
     fun navigate(navDirections: NavDirections) {
