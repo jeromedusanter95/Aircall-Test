@@ -4,20 +4,20 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.jeromedusanter.aircalltest.domain.MainAction
+import com.jeromedusanter.aircalltest.domain.MainStore
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetIssuesHistoryByRepoSinceLastYearUseCase
 import com.jeromedusanter.aircalltest.domain.usecases.repogithub.GetRepoGithubUseCase
 import com.jeromedusanter.aircalltest.ui.base.BaseViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsMapper
-import com.jeromedusanter.aircalltest.ui.main.features.repogithub.details.RepoGithubDetailsUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListStatefulLayout
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListUiModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterUiModel
 import com.jeromedusanter.aircalltest.ui.utils.addOnPropertyChanged
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +28,8 @@ class RepoGithubViewModel @Inject constructor(
     private val getIssuesHistoryByRepoSinceLastYearUseCase: GetIssuesHistoryByRepoSinceLastYearUseCase,
     private val listMapper: RepoGithubListMapper,
     private val detailsMapper: RepoGithubDetailsMapper,
-    private val filterMapper: RepoGithubFilterMapper
+    private val filterMapper: RepoGithubFilterMapper,
+    private val mainStore: MainStore
 ) : BaseViewModel<RepoGithubAction>() {
 
     private val _selectedRepoGithub = MutableLiveData<RepoGithub>()
@@ -90,14 +91,15 @@ class RepoGithubViewModel @Inject constructor(
     }
 
     fun getRepoGithubList() {
-        getRepoGithubUseCase.execute(_selectedFilter.get())
+        /*getRepoGithubUseCase.execute(_selectedFilter.get())
             .flatMap { repoGithubList ->
                 Single.merge(repoGithubList.map { repo ->
                     getIssuesHistoryByRepoSinceLastYearUseCase.execute(Pair(repo.owner, repo.name))
                         .map { repo.copy(issuesHistory = it.toMutableList()) }
                 })
                     .toList()
-            }
+            }*/
+        mainStore.dispatch<List<RepoGithub>>(MainAction.GetRepoGithubListAction(_selectedFilter.get()))
             .doOnSubscribe { listUiState.set(RepoGithubListStatefulLayout.State.LOADING) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

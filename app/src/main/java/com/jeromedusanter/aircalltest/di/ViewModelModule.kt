@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.jeromedusanter.aircalltest.ui.login.LoginViewModel
 import com.jeromedusanter.aircalltest.ui.main.MainViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
+import com.jeromedusanter.aircalltest.ui.main.features.test.TestViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -39,4 +40,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RepoGithubViewModel::class)
     protected abstract fun bindRepositoryViewModel(viewModel: RepoGithubViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TestViewModel::class)
+    protected abstract fun bindTestViewModel(viewModel: TestViewModel): ViewModel
 }

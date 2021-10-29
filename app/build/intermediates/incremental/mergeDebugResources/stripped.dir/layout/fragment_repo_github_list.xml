@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                        
+
+    
+
+                 
+                            
+                                                                                                    
+           
+
+    <com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListStatefulLayout
+        android:id="@+id/statefulLayout_repoGithub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+                                                     android:tag="layout/fragment_repo_github_list_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/unit_2">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_repoGithub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:tag="binding_1"                  />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubListStatefulLayout>
+         

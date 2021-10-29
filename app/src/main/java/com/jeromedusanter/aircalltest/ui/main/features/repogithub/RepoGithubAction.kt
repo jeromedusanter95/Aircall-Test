@@ -9,4 +9,5 @@ sealed class RepoGithubAction : IAction {
     object HideKeyBoard : RepoGithubAction()
     data class ShowErrorQueryError(val showError: Boolean) : RepoGithubAction()
     data class ShowErrorPerPageError(val showError: Boolean) : RepoGithubAction()
+    object NavToTest : RepoGithubAction()
 }

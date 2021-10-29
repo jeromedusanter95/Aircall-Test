@@ -9,6 +9,7 @@ import com.jeromedusanter.aircalltest.domain.boundaries.RepoGithubRepository
 import com.jeromedusanter.aircalltest.domain.models.Issue
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
+import com.jeromedusanter.aircalltest.domain.models.RepoGithubSort
 import io.reactivex.Single
 import org.threeten.bp.LocalDateTime
 import javax.inject.Inject

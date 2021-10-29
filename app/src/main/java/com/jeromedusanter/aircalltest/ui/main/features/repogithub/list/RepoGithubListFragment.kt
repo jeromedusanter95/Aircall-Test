@@ -40,6 +40,7 @@ class RepoGithubListFragment :
         when (action) {
             is RepoGithubAction.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepoGithubDetails())
             is RepoGithubAction.InvalidateOptionsMenu -> requireActivity().invalidateOptionsMenu()
+            is RepoGithubAction.NavToTest -> navigate(RepoGithubListFragmentDirections.actionNavigateToTest())
         }
     }
 
@@ -85,7 +86,7 @@ class RepoGithubListFragment :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_filter -> {
-                showFilterDialogFragment()
+                navigate(RepoGithubListFragmentDirections.actionNavigateToTest())
                 true
             }
             R.id.item_refresh -> {

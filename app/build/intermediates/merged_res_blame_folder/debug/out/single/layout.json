@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/dialog_repo_github_filter.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/dialog_repo_github_filter.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_repo_github_list.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/fragment_repo_github_list.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/item_repo_github.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/item_repo_github.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_repo_github_details.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/fragment_repo_github_details.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/sfl_repo_github_list_error.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/sfl_repo_github_list_error.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_login.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_test.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/fragment_test.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/jeromedusanter/Sources/Aircall-Test/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/item_issue.xml",
+        "source": "/Users/jeromedusanter/Sources/Aircall-Test/app/src/main/res/layout/item_issue.xml"
+    }
+]
