@@ -1,4 +1,4 @@
-package com.jeromedusanter.aircalltest.data.remote.repogithub.models
+package com.jeromedusanter.aircalltest.data.features.repogithub.models
 
 import com.google.gson.annotations.SerializedName
 import com.jeromedusanter.aircalltest.data.base.IDataApiModel

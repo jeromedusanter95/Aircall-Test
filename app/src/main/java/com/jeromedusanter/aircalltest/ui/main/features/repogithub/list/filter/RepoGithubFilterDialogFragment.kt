@@ -36,11 +36,8 @@ class RepoGithubFilterDialogFragment :
         }
     }
 
-    override fun onAction(action: RepoGithubAction) {
-        super.onAction(action)
+    override fun onReceiveUiAction(action: RepoGithubAction?) {
         when (action) {
-            RepoGithubAction.DismissFilterDialog -> dismiss()
-            RepoGithubAction.HideKeyBoard -> requireContext().hideKeyboard(requireView())
             is RepoGithubAction.ShowErrorPerPageError -> {
                 binding.textInputPerPage.error =
                     if (action.showError)

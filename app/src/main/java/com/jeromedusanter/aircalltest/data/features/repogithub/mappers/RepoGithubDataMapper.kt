@@ -1,9 +1,8 @@
-package com.jeromedusanter.aircalltest.data.remote.repogithub.mappers
+package com.jeromedusanter.aircalltest.data.features.repogithub.mappers
 
 import com.jeromedusanter.aircalltest.data.base.IMapper
-import com.jeromedusanter.aircalltest.data.remote.repogithub.models.RepoGithubApi
+import com.jeromedusanter.aircalltest.data.features.repogithub.models.RepoGithubApi
 import com.jeromedusanter.aircalltest.data.utils.toLocaleDate
-import com.jeromedusanter.aircalltest.domain.models.IssuesHistoryByWeek
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import javax.inject.Inject
 

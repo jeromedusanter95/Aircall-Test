@@ -1,7 +1,7 @@
-package com.jeromedusanter.aircalltest.data.remote.repogithub.mappers
+package com.jeromedusanter.aircalltest.data.features.repogithub.mappers
 
 import com.jeromedusanter.aircalltest.data.base.IMapper
-import com.jeromedusanter.aircalltest.data.remote.repogithub.models.SortRepoGithubApi
+import com.jeromedusanter.aircalltest.data.features.repogithub.models.SortRepoGithubApi
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubSort
 import javax.inject.Inject
 

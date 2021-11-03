@@ -35,8 +35,7 @@ class RepoGithubListFragment :
         }
     }
 
-    override fun onAction(action: RepoGithubAction) {
-        super.onAction(action)
+    override fun onReceiveUiAction(action: RepoGithubAction?) {
         when (action) {
             is RepoGithubAction.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepoGithubDetails())
             is RepoGithubAction.InvalidateOptionsMenu -> requireActivity().invalidateOptionsMenu()

@@ -8,8 +8,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.ActivityMainBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseActivity
+import com.jeromedusanter.aircalltest.ui.base.IUiAction
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainAction, MainViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding, IUiAction, MainViewModel>() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
     private val appBarConfiguration by lazy { AppBarConfiguration(setOf(R.id.fragment_repo_github_list)) }

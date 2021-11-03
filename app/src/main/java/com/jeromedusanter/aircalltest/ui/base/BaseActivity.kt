@@ -1,16 +1,18 @@
 package com.jeromedusanter.aircalltest.ui.base
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.jeromedusanter.aircalltest.BR
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-abstract class BaseActivity<B : ViewDataBinding, A : IAction, VM : BaseViewModel<A>> :
+abstract class BaseActivity<B : ViewDataBinding, A : IUiAction, VM : BaseViewModel> :
     AppCompatActivity(), IView<A> {
 
     abstract val resId: Int
@@ -29,6 +31,32 @@ abstract class BaseActivity<B : ViewDataBinding, A : IAction, VM : BaseViewModel
         binding = DataBindingUtil.setContentView(this, resId)
         binding.setVariable(BR.viewModel, viewModel)
         binding.lifecycleOwner = this
-        viewModel.action.observe(this, { action -> action?.let { onAction(action) } })
+        viewModel.action.observe(this, { action ->
+            try {
+                action?.let {
+                    when (it) {
+                        is CommonUiAction -> onReceiveCommonUiAction(it)
+                        else -> onReceiveUiAction(it as? A)
+                    }
+                }
+            } catch (t: Throwable) {
+                if (t !is ClassCastException) t.printStackTrace()
+            }
+        })
+    }
+
+    override fun onReceiveCommonUiAction(action: CommonUiAction) {
+        when (action) {
+            is CommonUiAction.ShowToast -> Toast.makeText(
+                this,
+                action.message,
+                Toast.LENGTH_SHORT
+            ).show()
+            is CommonUiAction.ShowSnackBar -> Snackbar.make(
+                findViewById(android.R.id.content),
+                action.message,
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
     }
 }

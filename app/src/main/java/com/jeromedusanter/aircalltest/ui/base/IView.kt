@@ -1,5 +1,6 @@
 package com.jeromedusanter.aircalltest.ui.base
 
-interface IView<A : IAction> {
-    fun onAction(action: A) = Unit
+interface IView<A> {
+    fun onReceiveUiAction(action: A?) = Unit
+    fun onReceiveCommonUiAction(action: CommonUiAction)
 }

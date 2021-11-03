@@ -1,39 +1,37 @@
-package com.jeromedusanter.aircalltest.data.remote.repogithub
+package com.jeromedusanter.aircalltest.data.features.repogithub.datastores
 
 import com.jeromedusanter.aircalltest.data.remote.ApiService
-import com.jeromedusanter.aircalltest.data.remote.repogithub.mappers.IssueDataMapper
-import com.jeromedusanter.aircalltest.data.remote.repogithub.mappers.RepoGithubDataMapper
-import com.jeromedusanter.aircalltest.data.remote.repogithub.mappers.RepoGithubSortDataMapper
+import com.jeromedusanter.aircalltest.data.features.repogithub.mappers.IssueDataMapper
+import com.jeromedusanter.aircalltest.data.features.repogithub.mappers.RepoGithubDataMapper
+import com.jeromedusanter.aircalltest.data.features.repogithub.mappers.RepoGithubSortDataMapper
 import com.jeromedusanter.aircalltest.data.utils.toDatabaseFormatString
-import com.jeromedusanter.aircalltest.domain.boundaries.RepoGithubRepository
 import com.jeromedusanter.aircalltest.domain.models.Issue
 import com.jeromedusanter.aircalltest.domain.models.RepoGithub
 import com.jeromedusanter.aircalltest.domain.models.RepoGithubFilter
-import io.reactivex.Single
 import org.threeten.bp.LocalDateTime
 import javax.inject.Inject
 
-class RepoGithubRepositoryImpl @Inject constructor(
+class RemoteRepoGithubDataStore @Inject constructor(
     private val apiService: ApiService,
     private val repoGithubMapper: RepoGithubDataMapper,
     private val sortMapper: RepoGithubSortDataMapper,
     private val issueMapper: IssueDataMapper
-) : RepoGithubRepository {
+) {
 
-    override fun getRepoGithubList(filter: RepoGithubFilter): Single<List<RepoGithub>> {
+    suspend fun getRepoGithubList(filter: RepoGithubFilter): List<RepoGithub> {
         return apiService.fetchRepositories(
             sort = sortMapper.mapModelToDataApiModel(filter.sort).serverValue,
             perPage = filter.perPage,
             query = filter.query
         )
-            .map { it.items.map { repoGithubMapper.mapDataApiModelToModel(it) } }
+            .items.map { repoGithubMapper.mapDataApiModelToModel(it) }
     }
 
-    override fun getIssuesByRepoGithub(
+    suspend fun getIssuesByRepoGithub(
         owner: String,
         repo: String,
         since: LocalDateTime
-    ): Single<List<Issue>> {
+    ): List<Issue> {
         return apiService.fetchIssuesByRepo(
             owner = owner,
             repo = repo,
@@ -41,6 +39,6 @@ class RepoGithubRepositoryImpl @Inject constructor(
             page = 1,
             perPage = 100
         )
-            .map { it.map { issueMapper.mapDataApiModelToModel(it) } }
+            .map { issueMapper.mapDataApiModelToModel(it) }
     }
 }

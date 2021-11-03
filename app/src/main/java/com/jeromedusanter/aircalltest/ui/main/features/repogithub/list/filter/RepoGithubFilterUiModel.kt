@@ -11,6 +11,7 @@ class RepoGithubFilterUiModel(
     query: String
 ) : IUiModel, BaseObservable() {
 
+    //This code permit to enable two-way databinding but maybe it's not the best
     @Bindable
     var sort: Int = sort
         set(value) {

@@ -2,7 +2,7 @@ package com.jeromedusanter.aircalltest
 
 import android.app.Activity
 import android.app.Application
-import androidx.fragment.app.DialogFragment
+import android.content.Context
 import androidx.fragment.app.Fragment
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.jeromedusanter.aircalltest.data.remote.RequestManager
@@ -10,7 +10,6 @@ import com.jeromedusanter.aircalltest.di.ComponentManager
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import dagger.android.HasFragmentInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
@@ -33,7 +32,15 @@ class Application : Application(), HasActivityInjector, HasSupportFragmentInject
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(applicationContext)
-        ComponentManager.init(this, RequestManager.getRetrofit())
+        ComponentManager.init(
+            this,
+            RequestManager.getRetrofit(),
+            getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        )
         ComponentManager.applicationComponent.inject(this)
+    }
+
+    companion object {
+        const val PREF_NAME = "pref_name"
     }
 }

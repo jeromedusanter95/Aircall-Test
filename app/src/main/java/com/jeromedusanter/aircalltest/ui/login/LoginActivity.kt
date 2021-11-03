@@ -7,9 +7,10 @@ import androidx.activity.viewModels
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.ActivityLoginBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseActivity
+import com.jeromedusanter.aircalltest.ui.base.IUiAction
 import com.jeromedusanter.aircalltest.ui.main.MainActivity
 
-class LoginActivity : BaseActivity<ActivityLoginBinding, LoginAction, LoginViewModel>() {
+class LoginActivity : BaseActivity<ActivityLoginBinding, IUiAction, LoginViewModel>() {
 
     override val resId: Int = R.layout.activity_login
 

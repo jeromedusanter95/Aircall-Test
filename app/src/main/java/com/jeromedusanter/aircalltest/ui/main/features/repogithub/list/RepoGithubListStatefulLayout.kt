@@ -31,6 +31,14 @@ class RepoGithubListStatefulLayout @JvmOverloads constructor(
                 null
             )
         )
+
+        setStateView(
+            State.ERROR_NO_WIFI.value,
+            LayoutInflater.from(getContext()).inflate(
+                R.layout.sfl_default_placeholder_offline,
+                null
+            )
+        )
     }
 
     fun setErrorView(setup: SflRepoGithubListErrorBinding.() -> Unit) {
@@ -47,6 +55,7 @@ class RepoGithubListStatefulLayout @JvmOverloads constructor(
     enum class State constructor(val value: String) {
         CONTENT(StatefulLayout.State.CONTENT),
         ERROR("error"),
+        ERROR_NO_WIFI("error_no_wifi"),
         LOADING("loading"),
         EMPTY("empty")
     }
