@@ -9,10 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import com.jeromedusanter.aircalltest.BR
-import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
 
 abstract class BaseDialogFragment<B : ViewDataBinding, A : IUiAction, VM : BaseViewModel> :
     DialogFragment(), IView<A> {
@@ -22,14 +19,6 @@ abstract class BaseDialogFragment<B : ViewDataBinding, A : IUiAction, VM : BaseV
     abstract val viewModel: VM
 
     lateinit var binding: B
-
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

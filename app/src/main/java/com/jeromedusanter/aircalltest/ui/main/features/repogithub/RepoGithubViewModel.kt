@@ -22,9 +22,11 @@ import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithu
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterMapper
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterUiModel
 import com.jeromedusanter.aircalltest.ui.utils.addOnPropertyChanged
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class RepoGithubViewModel @Inject constructor(
     private val getRepoGithubUseCase: GetRepoGithubBaseUseCase,
     private val listMapper: RepoGithubListMapper,

@@ -11,14 +11,15 @@ import com.jeromedusanter.aircalltest.databinding.DialogRepoGithubFilterBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseDialogFragment
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubAction
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
-import com.jeromedusanter.aircalltest.ui.utils.hideKeyboard
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RepoGithubFilterDialogFragment :
     BaseDialogFragment<DialogRepoGithubFilterBinding, RepoGithubAction, RepoGithubViewModel>() {
 
     override val resId: Int = R.layout.dialog_repo_github_filter
 
-    override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github) { factory }
+    override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github)
 
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

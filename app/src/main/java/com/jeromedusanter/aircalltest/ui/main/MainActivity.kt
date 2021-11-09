@@ -9,7 +9,9 @@ import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.ActivityMainBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseActivity
 import com.jeromedusanter.aircalltest.ui.base.IUiAction
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, IUiAction, MainViewModel>() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
@@ -17,7 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, IUiAction, MainViewModel>
 
     override val resId: Int = R.layout.activity_main
 
-    override val viewModel: MainViewModel by viewModels { factory }
+    override val viewModel: MainViewModel by viewModels()
 
     override fun onStart() {
         super.onStart()

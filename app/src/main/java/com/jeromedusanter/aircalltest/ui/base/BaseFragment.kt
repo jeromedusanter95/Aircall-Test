@@ -11,13 +11,10 @@ import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.jeromedusanter.aircalltest.BR
-import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
 
 abstract class BaseFragment<B : ViewDataBinding, A : IUiAction, VM : BaseViewModel> : Fragment(),
     IView<A> {
@@ -27,14 +24,6 @@ abstract class BaseFragment<B : ViewDataBinding, A : IUiAction, VM : BaseViewMod
     abstract val viewModel: VM
 
     lateinit var binding: B
-
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
 
     @CallSuper
     override fun onCreateView(

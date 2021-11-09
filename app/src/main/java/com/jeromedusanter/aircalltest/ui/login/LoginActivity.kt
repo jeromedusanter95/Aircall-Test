@@ -9,12 +9,14 @@ import com.jeromedusanter.aircalltest.databinding.ActivityLoginBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseActivity
 import com.jeromedusanter.aircalltest.ui.base.IUiAction
 import com.jeromedusanter.aircalltest.ui.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding, IUiAction, LoginViewModel>() {
 
     override val resId: Int = R.layout.activity_login
 
-    override val viewModel: LoginViewModel by viewModels { factory }
+    override val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

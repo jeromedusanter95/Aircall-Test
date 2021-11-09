@@ -5,20 +5,22 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.navigation.navGraphViewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.FragmentRepoGithubListBinding
 import com.jeromedusanter.aircalltest.ui.base.BaseFragment
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubAction
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.RepoGithubViewModel
 import com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.filter.RepoGithubFilterDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RepoGithubListFragment :
     BaseFragment<FragmentRepoGithubListBinding, RepoGithubAction, RepoGithubViewModel>() {
 
     override val resId: Int = R.layout.fragment_repo_github_list
 
-    override val viewModel: RepoGithubViewModel by navGraphViewModels(R.id.navigation_repo_github) { factory }
+    override val viewModel: RepoGithubViewModel by hiltNavGraphViewModels(R.id.navigation_repo_github)
 
     private val adapter by lazy { RepoGithubListAdapter(buildRepoGithubAdapterListener()) }
 

@@ -6,11 +6,8 @@ import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.jeromedusanter.aircalltest.BR
-import dagger.android.AndroidInjection
-import javax.inject.Inject
 
 abstract class BaseActivity<B : ViewDataBinding, A : IUiAction, VM : BaseViewModel> :
     AppCompatActivity(), IView<A> {
@@ -21,12 +18,8 @@ abstract class BaseActivity<B : ViewDataBinding, A : IUiAction, VM : BaseViewMod
 
     lateinit var binding: B
 
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, resId)
         binding.setVariable(BR.viewModel, viewModel)
