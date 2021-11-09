@@ -58,12 +58,6 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
     implementation 'androidx.work:work-rxjava2:2.7.0'
 
-    // ----- Di ----- //
-    implementation 'com.google.dagger:dagger-android:2.35.1'
-    implementation 'com.google.dagger:dagger-android-support:2.16'
-    kapt 'com.google.dagger:dagger-android-processor:2.24'
-    kapt 'com.google.dagger:dagger-compiler:2.40'
-
     // ----- Navigation ----- //
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
