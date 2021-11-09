@@ -1,6 +1,5 @@
 package com.jeromedusanter.aircalltest.di
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.jeromedusanter.aircalltest.BuildConfig
 import com.jeromedusanter.aircalltest.data.remote.ApiService
 import dagger.Module
@@ -15,20 +14,20 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object RetrofitModule {
+class RetrofitModule {
 
     @Provides
     @Singleton
     internal fun provideRetrofit(): Retrofit {
         val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            .apply { setLevel(HttpLoggingInterceptor.Level.BODY) }
+
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
 
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
