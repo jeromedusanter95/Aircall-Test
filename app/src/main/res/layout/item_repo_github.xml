@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.jeromedusanter.aircalltest.ui.main.features.repogithub.list.RepoGithubItemViewModel" />
@@ -28,12 +27,29 @@
             android:orientation="vertical"
             android:padding="@dimen/unit_2">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{context.getDrawable(viewModel.observableFavoriteIconId)}"
+                android:background="@android:color/transparent"
+                android:layout_marginRight="@dimen/unit_1"
+                android:onClick="@{(view) -> viewModel.onFavoriteClick()}"
+                />
+
             <TextView
                 style="@style/AppTheme.Text.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.name}"
                 tools:text="Okhttp" />
+
+        </LinearLayout>
 
             <TextView
                 style="@style/AppTheme.Text.Content"

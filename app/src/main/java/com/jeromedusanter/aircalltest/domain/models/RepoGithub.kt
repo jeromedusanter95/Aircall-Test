@@ -14,5 +14,6 @@ data class RepoGithub(
     val watchersCount: Int,
     val stargazersCount: Int,
     val forksCount: Int,
-    val issuesHistory: MutableList<IssuesHistoryByWeek>
+    val issuesHistory: MutableList<IssuesHistoryByWeek>,
+    var isFavorited:Boolean = false
 ) : IModel

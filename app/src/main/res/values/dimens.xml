@@ -11,4 +11,6 @@
     <dimen name="unit_6">48dp</dimen>
     <dimen name="unit_7">56dp</dimen>
     <dimen name="unit_8">64dp</dimen>
+
+    <dimen name="star_size">32dp</dimen>
 </resources>

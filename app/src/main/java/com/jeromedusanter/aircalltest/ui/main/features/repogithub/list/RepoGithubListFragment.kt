@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.jeromedusanter.aircalltest.R
 import com.jeromedusanter.aircalltest.databinding.FragmentRepoGithubListBinding
@@ -47,6 +48,10 @@ class RepoGithubListFragment :
     private fun buildRepoGithubAdapterListener() = object : RepoGithubListAdapter.Listener {
         override fun onClickItem(itemId: Long) {
             viewModel.selectRepoGithub(itemId)
+        }
+
+        override fun onFavoriteClick(itemId: Long) {
+            Toast.makeText(requireContext(), "click on ${itemId}", Toast.LENGTH_SHORT).show()
         }
     }
 

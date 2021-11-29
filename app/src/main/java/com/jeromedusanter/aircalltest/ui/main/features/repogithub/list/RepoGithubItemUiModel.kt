@@ -7,5 +7,6 @@ data class RepoGithubItemUiModel(
     val name: String,
     val description: String,
     val private: Boolean,
-    val createdAt: String
+    val createdAt: String,
+    var isFavorited : Boolean= false
 ) : IUiModel

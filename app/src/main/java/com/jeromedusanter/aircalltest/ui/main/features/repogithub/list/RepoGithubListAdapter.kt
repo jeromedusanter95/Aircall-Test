@@ -13,5 +13,6 @@ class RepoGithubListAdapter(
 
     interface Listener {
         fun onClickItem(itemId: Long)
+        fun onFavoriteClick(itemId: Long)
     }
 }
