@@ -72,6 +72,15 @@ class RepoGithubViewModel @Inject constructor(
         doUiAction(RepoGithubAction.NavToRepoGithubDetails)
     }
 
+    fun setFavorited(id: Long){
+        val model = _repoGithubList.value?.find { it.id == id }
+        if (model !=null){
+            model.isFavorited=!model.isFavorited
+            doUiAction(RepoGithubAction.displayFavoriteStatus(model.isFavorited))
+        }
+
+    }
+
     fun refreshPage() {
         _selectedFilter.set(RepoGithubFilter.newDefaultInstance())
         getRepoGithubList()

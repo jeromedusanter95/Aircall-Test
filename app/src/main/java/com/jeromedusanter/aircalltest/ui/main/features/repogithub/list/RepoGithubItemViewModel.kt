@@ -27,6 +27,7 @@ class RepoGithubItemViewModel(private val listener: RepoGithubListAdapter.Listen
         get() = { item: RepoGithubItemUiModel, _: Int -> listener?.onClickItem(item.id) }
 
     fun onFavoriteClick(){
+        item.isFavorited = !item.isFavorited
         listener?.onFavoriteClick(item.id)
     }
 }

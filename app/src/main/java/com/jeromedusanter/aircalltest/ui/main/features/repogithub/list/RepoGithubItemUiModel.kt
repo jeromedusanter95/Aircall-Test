@@ -8,5 +8,5 @@ data class RepoGithubItemUiModel(
     val description: String,
     val private: Boolean,
     val createdAt: String,
-    var isFavorited : Boolean= false
+    var isFavorited : Boolean
 ) : IUiModel

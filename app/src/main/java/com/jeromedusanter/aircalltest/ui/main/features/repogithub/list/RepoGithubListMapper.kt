@@ -13,7 +13,8 @@ class RepoGithubListMapper @Inject constructor() : IMapper<RepoGithub, RepoGithu
             model.name,
             model.description,
             model.private,
-            model.createdAt.toFormattedStringWithPattern("dd/MM/yyyy")
+            model.createdAt.toFormattedStringWithPattern("dd/MM/yyyy"),
+            model.isFavorited
         )
     }
 

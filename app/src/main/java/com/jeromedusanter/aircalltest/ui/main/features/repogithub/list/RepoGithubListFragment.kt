@@ -42,6 +42,7 @@ class RepoGithubListFragment :
         when (action) {
             is RepoGithubAction.NavToRepoGithubDetails -> navigate(RepoGithubListFragmentDirections.actionNavigateToRepoGithubDetails())
             is RepoGithubAction.InvalidateOptionsMenu -> requireActivity().invalidateOptionsMenu()
+            is RepoGithubAction.displayFavoriteStatus -> adapter.notifyDataSetChanged()
         }
     }
 
@@ -51,7 +52,7 @@ class RepoGithubListFragment :
         }
 
         override fun onFavoriteClick(itemId: Long) {
-            Toast.makeText(requireContext(), "click on ${itemId}", Toast.LENGTH_SHORT).show()
+            viewModel.setFavorited(itemId)
         }
     }
 
